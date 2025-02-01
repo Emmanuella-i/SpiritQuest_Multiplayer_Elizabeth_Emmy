@@ -2,6 +2,7 @@
 enum class MissionStatus
 {
 	kMissionRunning,
-	kMissionSuccess,
+	kMissionSuccessGhost,
+	kMissionSuccessReaper,
 	kMissionFailure
 };

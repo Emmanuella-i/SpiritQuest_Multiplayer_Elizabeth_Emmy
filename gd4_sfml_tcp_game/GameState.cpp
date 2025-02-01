@@ -24,7 +24,14 @@ bool GameState::Update(sf::Time dt)
 	}
 	else if(m_world.HasPlayerReachedEnd())
 	{ 
-		m_player.SetMissionStatus(MissionStatus::kMissionSuccess);
+		m_player.SetMissionStatus(MissionStatus::kMissionSuccessGhost);
+		RequestStackPush(StateID::kGameOver);
+	}
+	// E. if the reaper and player reach the end can put in game over state 
+	// to be altered for when multiplayer is added to have the reaper win once P1 reaches 0 SE
+	else if (m_world.HasPlayerReachedEnd())
+	{
+		m_player.SetMissionStatus(MissionStatus::kMissionSuccessReaper);
 		RequestStackPush(StateID::kGameOver);
 	}
 	CommandQueue& commands = m_world.GetCommandQueue();

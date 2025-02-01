@@ -14,16 +14,20 @@ GameOverState::GameOverState(StateStack& stack, Context context)
     sf::Vector2f window_size(context.window->getSize());
 
     m_game_over_text.setFont(font);
-    if (context.player->GetMissionStatus() == MissionStatus::kMissionSuccess)
+    if (context.player->GetMissionStatus() == MissionStatus::kMissionSuccessGhost)
     {
-        m_game_over_text.setString("Mission Success");
+        m_game_over_text.setString("The Ghost has escaped the Reaper!""Player 1 wins");
+    }
+    else if (context.player->GetMissionStatus() == MissionStatus::kMissionSuccessReaper)
+    {
+        m_game_over_text.setString("The Reaper has reaped the Ghost!"  "Player 2 wins");
     }
     else
     {
-        m_game_over_text.setString("Mission Failure");
+        m_game_over_text.setString("You both fail..."  "Try again");
     }
-
-    m_game_over_text.setCharacterSize(70);
+        
+    m_game_over_text.setCharacterSize(30);
     Utility::CentreOrigin(m_game_over_text);
     m_game_over_text.setPosition(0.5f * window_size.x, 0.4 * window_size.y);
 
@@ -36,7 +40,7 @@ void GameOverState::Draw()
 
     //Create a dark semi-transparent background
     sf::RectangleShape background_shape;
-    background_shape.setFillColor(sf::Color(0, 0, 0, 150));
+    background_shape.setFillColor(sf::Color(100,0 ,100 , 50));
     background_shape.setSize(window.getView().getSize());
 
     window.draw(background_shape);
