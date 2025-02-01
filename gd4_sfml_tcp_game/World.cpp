@@ -84,7 +84,7 @@ bool World::HasPlayerReachedEnd() const
 
 void World::LoadTextures()
 {
-	m_textures.Load(TextureID::kGhost, "Media/Textures/Eagle.png");
+	m_textures.Load(TextureID::kGhost, "Media/Textures/Ghost/Ghost.png");
 	m_textures.Load(TextureID::kReaper, "Media/Textures/Raptor.png");
 	m_textures.Load(TextureID::kLandscape, "Media/Textures/Clouds 3/1.png");
 	m_textures.Load(TextureID::kBullet, "Media/Textures/Bullet.png");
@@ -163,14 +163,14 @@ void World::BuildScene()
 void World::AdaptPlayerPosition()
 {
 	//keep the player on the screen
-	sf::FloatRect view_bounds(m_camera.getCenter() - m_camera.getSize() / 2.f, m_camera.getSize());
-	const float border_distance = 40.f;
+	//sf::FloatRect view_bounds(m_camera.getCenter() - m_camera.getSize() / 2.f, m_camera.getSize());
+	//const float border_distance = 40.f;
 
 	sf::Vector2f position = m_player_aircraft->getPosition();
-	position.x = std::max(position.x, view_bounds.left + border_distance);
-	position.x = std::min(position.x, view_bounds.left + view_bounds.width - border_distance);
-	position.y = std::max(position.y, view_bounds.top + border_distance);
-	position.y = std::min(position.y, view_bounds.top + view_bounds.height -border_distance);
+	//position.x = std::max(position.x, view_bounds.left + border_distance);
+	//position.x = std::min(position.x, view_bounds.left + view_bounds.width - border_distance);
+	//position.y = std::max(position.y, view_bounds.top + border_distance);
+	//position.y = std::min(position.y, view_bounds.top + view_bounds.height -border_distance);
 	m_player_aircraft->setPosition(position);
 }
 
@@ -241,7 +241,7 @@ sf::FloatRect World::GetBattleFieldBounds() const
 void World::DestroyEntitiesOutsideView()
 {
 	Command command;
-	command.category = static_cast<int>(ReceiverCategories::kEnemyAircraft) | static_cast<int>(ReceiverCategories::kProjectile);
+	command.category = static_cast<int>(ReceiverCategories::kEnemyAircraft) | static_cast<int>(ReceiverCategories::kProjectile) | static_cast<int>(ReceiverCategories::kPlayerAircraft);
 	command.action = DerivedAction<Entity>([this](Entity& e, sf::Time dt)
 		{
 			//Does the object intersect with the battlefield
