@@ -263,7 +263,7 @@ void Character::UpdateCurrent(sf::Time dt, CommandQueue& commands)
 	UpdateTexts();
 	UpdateMovementPattern(dt);
 
-	UpdateRollAnimation();
+	//UpdateRollAnimation();
 
 	//Check if bullets or misiles are fired
 	CheckProjectileLaunch(dt, commands);

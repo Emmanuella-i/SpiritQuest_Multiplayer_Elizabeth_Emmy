@@ -52,7 +52,7 @@ void World::Update(sf::Time dt)
 
 void World::Draw()
 {
-	if (PostEffect::IsSupported())
+	/*if (PostEffect::IsSupported())
 	{
 		m_scene_texture.clear();
 		m_scene_texture.setView(m_camera);
@@ -61,10 +61,10 @@ void World::Draw()
 		m_bloom_effect.Apply(m_scene_texture, m_target);
 	}
 	else
-	{
+	{*/
 		m_target.setView(m_camera);
 		m_target.draw(m_scenegraph);
-	}
+	//}
 }
 
 CommandQueue& World::GetCommandQueue()
@@ -84,8 +84,8 @@ bool World::HasPlayerReachedEnd() const
 
 void World::LoadTextures()
 {
-	m_textures.Load(TextureID::kGhost, "Media/Textures/Ghost/Ghost.png");
-	m_textures.Load(TextureID::kReaper, "Media/Textures/Raptor.png");
+	m_textures.Load(TextureID::kGhost, "Media/Textures/Ghost/Ghost(1).png");
+	m_textures.Load(TextureID::kReaper, "Media/Textures/Reaper (Animated Pixel Art)/Preview/Reap.png");
 	m_textures.Load(TextureID::kLandscape, "Media/Textures/Clouds 3/1.png");
 	m_textures.Load(TextureID::kBullet, "Media/Textures/Bullet.png");
 	m_textures.Load(TextureID::kMissile, "Media/Textures/Missile.png");
