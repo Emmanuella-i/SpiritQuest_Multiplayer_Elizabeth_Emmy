@@ -26,10 +26,6 @@ Application::Application() : m_window(sf::VideoMode(1024, 576), "States", sf::St
 
 
 
-
-	
-
-
 void Application::Run()
 {
 	sf::Clock clock;

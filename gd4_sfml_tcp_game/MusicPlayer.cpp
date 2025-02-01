@@ -3,8 +3,8 @@
 MusicPlayer::MusicPlayer()
 	: m_volume(10.f)
 {
-	m_filenames[MusicThemes::kMenuTheme] = "Media/Music/MenuTheme.ogg";
-	m_filenames[MusicThemes::kMissionTheme] = "Media/Music/MissionTheme.ogg";
+	m_filenames[MusicThemes::kMenuTheme] = "Media/Music/8beats Light/01-8bit01.ogg";
+	m_filenames[MusicThemes::kMissionTheme] = "Media/Music/8beats Light/08-8bit08.ogg";
 }
 
 void MusicPlayer::Play(MusicThemes theme)
