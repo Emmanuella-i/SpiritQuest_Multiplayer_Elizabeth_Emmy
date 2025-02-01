@@ -4,6 +4,7 @@
 #include "PickupType.hpp"
 #include "Character.hpp"
 #include "ParticleType.hpp"
+#include "Deteriorate.hpp"
 
 std::vector<CharacterData> InitializeCharacterData()
 {
@@ -89,6 +90,19 @@ std::vector<ParticleData> InitializeParticleData()
 
     data[static_cast<int>(ParticleType::kSmoke)].m_color = sf::Color(50, 50, 50);
     data[static_cast<int>(ParticleType::kSmoke)].m_lifetime = sf::seconds(2.5f);
+
+    return data;
+}
+
+std::vector<DeteriorateData> InitializeDeteriorateData()
+{
+    std::vector<DeteriorateData> data;
+    
+    DeteriorateData deteriorateData;
+    deteriorateData.m_damage = 5; 
+
+    
+    data.push_back(deteriorateData);
 
     return data;
 }

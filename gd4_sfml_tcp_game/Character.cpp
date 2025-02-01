@@ -260,6 +260,7 @@ void Character::UpdateCurrent(sf::Time dt, CommandQueue& commands)
 	}
 
 	Entity::UpdateCurrent(dt, commands);
+
 	UpdateTexts();
 	UpdateMovementPattern(dt);
 

@@ -42,6 +42,9 @@ void World::Update(sf::Time dt)
 
 	HandleCollisions();
 
+
+	HandleDeteriorate();
+
 	m_scenegraph.RemoveWrecks();
 
 	SpawnEnemies();
@@ -96,7 +99,7 @@ void World::LoadTextures()
 	m_textures.Load(TextureID::kFireRate, "Media/Textures/FireRate.png");
 	m_textures.Load(TextureID::kFinishLine, "Media/Textures/FinishLine.png");
 
-	m_textures.Load(TextureID::kEntities, "Media/Textures/Entities.png");
+	m_textures.Load(TextureID::kEntities, "Media/Textures/Reaper (Animated Pixel Art)/Preview/Reap(1).png");
 	m_textures.Load(TextureID::kJungle, "Media/Textures/Clouds 3/1.png");
 	m_textures.Load(TextureID::kExplosion, "Media/Textures/Explosion.png");
 	m_textures.Load(TextureID::kParticle, "Media/Textures/Particle.png");
@@ -182,10 +185,13 @@ void World::AdaptPlayerVelocity()
 	if (velocity.x != 0.f && velocity.y != 0.f)
 	{
 		m_player_aircraft->SetVelocity(velocity / std::sqrt(2.f));
+		HandleDeteriorate();
 	}
 	//Add scrolling velocity
 	m_player_aircraft->Accelerate(0.f, m_scrollspeed);
 }
+
+
 
 void World::SpawnEnemies()
 {
@@ -352,6 +358,37 @@ void World::HandleCollisions()
 			projectile.Destroy();
 		}
 	}
+}
+
+void World::HandleDeteriorate()
+{
+
+	Command deter;
+	deter.category = static_cast<int>(ReceiverCategories::kPlayerAircraft);
+	deter.action = DerivedAction<Entity>([this](Entity& e, sf::Time dt)
+		{
+				
+			float timer = 0.0f; // Timer to track elapsed time
+			const float interval = 2.0f; // 
+
+					for (int i = 0; i < 100; ++i)
+					{
+						
+
+						timer += dt.asSeconds();
+
+						
+						if (timer >= interval) {
+							e.Damage(5);
+
+							
+							timer = 0.0f;
+						}
+					}
+
+		});
+	m_command_queue.Push(deter);
+
 }
 
 void World::UpdateSounds()

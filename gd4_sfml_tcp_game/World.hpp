@@ -41,6 +41,7 @@ private:
 	void GuideMissiles();
 
 	void HandleCollisions();
+	void HandleDeteriorate();
 	void UpdateSounds();
 
 

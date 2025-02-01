@@ -46,8 +46,14 @@ struct ParticleData
 	sf::Time m_lifetime;
 };
 
+struct DeteriorateData
+{
+	int m_damage;
+};
+
 std::vector<CharacterData> InitializeCharacterData();
 std::vector<ProjectileData> InitializeProjectileData();
 std::vector<PickupData> InitializePickupData();
 std::vector<ParticleData> InitializeParticleData();
+std::vector<DeteriorateData> InitializeDeteriorateData();
 

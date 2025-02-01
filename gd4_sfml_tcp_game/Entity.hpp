@@ -15,6 +15,7 @@ public:
 	int GetHitPoints() const;
 	void Repair(int points);
 	void Damage(int points);
+	void Deteriorate();
 	void Destroy();
 	virtual bool IsDestroyed() const override;
 
