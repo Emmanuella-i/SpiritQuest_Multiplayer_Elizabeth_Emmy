@@ -16,18 +16,18 @@ GameOverState::GameOverState(StateStack& stack, Context context)
     m_game_over_text.setFont(font);
     if (context.player->GetMissionStatus() == MissionStatus::kMissionSuccessGhost)
     {
-        m_game_over_text.setString("The Ghost has escaped the Reaper!""Player 1 wins");
+        m_game_over_text.setString("The Ghost has escaped the Reaper! \n           Player 1 wins");
     }
     else if (context.player->GetMissionStatus() == MissionStatus::kMissionSuccessReaper)
     {
-        m_game_over_text.setString("The Reaper has reaped the Ghost!"  "Player 2 wins");
+        m_game_over_text.setString("The Reaper has reaped the Ghost! \n     Player 2 wins");
     }
     else
     {
-        m_game_over_text.setString("You both fail..."  "Try again");
+        m_game_over_text.setString("You both fail...\n     Try again");
     }
         
-    m_game_over_text.setCharacterSize(30);
+    m_game_over_text.setCharacterSize(50);
     Utility::CentreOrigin(m_game_over_text);
     m_game_over_text.setPosition(0.5f * window_size.x, 0.4 * window_size.y);
 

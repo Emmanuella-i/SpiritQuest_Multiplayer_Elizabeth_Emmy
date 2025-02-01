@@ -16,6 +16,8 @@ struct CharacterMover
 
 Player::Player(): m_current_mission_status(MissionStatus::kMissionRunning)
 {
+    // PLAYER 1(Ghost) Controls (WASD +Space/M)
+    
     //Set initial key bindings
     m_key_binding[sf::Keyboard::A] = Action::kMoveLeft;
     m_key_binding[sf::Keyboard::D] = Action::kMoveRight;
@@ -23,6 +25,16 @@ Player::Player(): m_current_mission_status(MissionStatus::kMissionRunning)
     m_key_binding[sf::Keyboard::S] = Action::kMoveDown;
     m_key_binding[sf::Keyboard::M] = Action::kMissileFire;
     m_key_binding[sf::Keyboard::Space] = Action::kBulletFire;
+
+    // ET:PLAYER 2(Reaper) Controls (Arrow Keys +Enter/Shift)
+    m_key_binding[sf::Keyboard::Left] = Action::kMoveLeftP2;
+    m_key_binding[sf::Keyboard::Right] = Action::kMoveRightP2;
+    m_key_binding[sf::Keyboard::Up] = Action::kMoveUpP2;
+    m_key_binding[sf::Keyboard::Down] = Action::kMoveDownP2;
+    m_key_binding[sf::Keyboard::RShift] = Action::kMissileFireP2;
+    m_key_binding[sf::Keyboard::Enter] = Action::kBulletFireP2;
+
+
 
     //Set initial action bindings
     InitialiseActions();
@@ -100,6 +112,9 @@ MissionStatus Player::GetMissionStatus() const
 void Player::InitialiseActions()
 {
     const float kPlayerSpeed = 200.f;
+
+    //P1 Ghost 
+    
     m_action_binding[Action::kMoveLeft].action = DerivedAction<Character>(CharacterMover(-kPlayerSpeed, 0.f));
     m_action_binding[Action::kMoveRight].action = DerivedAction<Character>(CharacterMover(kPlayerSpeed, 0.f));
     m_action_binding[Action::kMoveUp].action = DerivedAction<Character>(CharacterMover(0.f, -kPlayerSpeed));
@@ -116,6 +131,25 @@ void Player::InitialiseActions()
         }
     );
 
+    //ET:Player2 Reaper
+    
+    m_action_binding[Action::kMoveLeftP2].action = DerivedAction<Character>(CharacterMover(-kPlayerSpeed, 0.f));
+    m_action_binding[Action::kMoveRightP2].action = DerivedAction<Character>(CharacterMover(kPlayerSpeed, 0.f));
+    m_action_binding[Action::kMoveUpP2].action = DerivedAction<Character>(CharacterMover(0.f, -kPlayerSpeed));
+    m_action_binding[Action::kMoveDownP2].action = DerivedAction<Character>(CharacterMover(0.f, kPlayerSpeed));
+    m_action_binding[Action::kBulletFireP2].action = DerivedAction<Character>([](Character& a, sf::Time dt)
+        {
+            a.Fire();
+        }
+    );
+
+    m_action_binding[Action::kMissileFireP2].action = DerivedAction<Character>([](Character& a, sf::Time dt)
+        {
+            a.LaunchMissile();
+        }
+    );
+
+
 }
 
 bool Player::IsRealTimeAction(Action action)
@@ -127,6 +161,13 @@ bool Player::IsRealTimeAction(Action action)
     case Action::kMoveDown:
     case Action::kMoveUp:
     case Action::kBulletFire:
+        //ET changes for player 2 below
+    case Action::kMoveLeftP2:
+    case Action::kMoveRightP2:
+    case Action::kMoveDownP2:
+    case Action::kMoveUpP2:
+    case Action::kBulletFireP2:
+
         return true;
     default:
         return false;
