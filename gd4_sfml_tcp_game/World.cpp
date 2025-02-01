@@ -145,7 +145,7 @@ void World::BuildScene()
 	std::unique_ptr<Character> leader(new Character(CharacterType::kGhost, m_textures, m_fonts));
 	m_player_aircraft = leader.get();
 	m_player_aircraft->setPosition(m_spawn_position);
-	m_player_aircraft->SetVelocity(40.f, m_scrollspeed);
+	m_player_aircraft->SetVelocity(40.f, 40.f);
 	m_scene_layers[static_cast<int>(SceneLayers::kUpperAir)]->AttachChild(std::move(leader));
 
 
@@ -195,7 +195,7 @@ void World::AdaptPlayerVelocity()
 		HandleDeteriorate();
 	}
 	//Add scrolling velocity
-	m_player_aircraft->Accelerate(0.f, m_scrollspeed);
+	m_player_aircraft->Accelerate(0.f, 40.f);
 }
 
 
