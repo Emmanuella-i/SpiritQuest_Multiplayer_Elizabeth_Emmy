@@ -84,10 +84,9 @@ bool World::HasPlayerReachedEnd() const
 
 void World::LoadTextures()
 {
-	m_textures.Load(TextureID::kEagle, "Media/Textures/Eagle.png");
-	m_textures.Load(TextureID::kRaptor, "Media/Textures/Raptor.png");
-	m_textures.Load(TextureID::kAvenger, "Media/Textures/Avenger.png");
-	m_textures.Load(TextureID::kLandscape, "Media/Textures/Pixel-16px Graveyard/parallax/bg.png");
+	m_textures.Load(TextureID::kGhost, "Media/Textures/Eagle.png");
+	m_textures.Load(TextureID::kReaper, "Media/Textures/Raptor.png");
+	m_textures.Load(TextureID::kLandscape, "Media/Textures/Clouds 3/1.png");
 	m_textures.Load(TextureID::kBullet, "Media/Textures/Bullet.png");
 	m_textures.Load(TextureID::kMissile, "Media/Textures/Missile.png");
 
@@ -98,7 +97,7 @@ void World::LoadTextures()
 	m_textures.Load(TextureID::kFinishLine, "Media/Textures/FinishLine.png");
 
 	m_textures.Load(TextureID::kEntities, "Media/Textures/Entities.png");
-	m_textures.Load(TextureID::kJungle, "Media/Textures/Pixel-16px Graveyard/parallax/bg.png");
+	m_textures.Load(TextureID::kJungle, "Media/Textures/Clouds 3/1.png");
 	m_textures.Load(TextureID::kExplosion, "Media/Textures/Explosion.png");
 	m_textures.Load(TextureID::kParticle, "Media/Textures/Particle.png");
 
@@ -133,7 +132,7 @@ void World::BuildScene()
 	m_scene_layers[static_cast<int>(SceneLayers::kBackground)]->AttachChild(std::move(finish_sprite));
 
 	//Add the player's aircraft
-	std::unique_ptr<Aircraft> leader(new Aircraft(AircraftType::kEagle, m_textures, m_fonts));
+	std::unique_ptr<Character> leader(new Character(CharacterType::kGhost, m_textures, m_fonts));
 	m_player_aircraft = leader.get();
 	m_player_aircraft->setPosition(m_spawn_position);
 	m_player_aircraft->SetVelocity(40.f, m_scrollspeed);
@@ -194,7 +193,7 @@ void World::SpawnEnemies()
 	while (!m_enemy_spawn_points.empty() && m_enemy_spawn_points.back().m_y > GetBattleFieldBounds().top)
 	{
 		SpawnPoint spawn = m_enemy_spawn_points.back();
-		std::unique_ptr<Aircraft> enemy(new Aircraft(spawn.m_type, m_textures, m_fonts));
+		std::unique_ptr<Character> enemy(new Character(spawn.m_type, m_textures, m_fonts));
 		enemy->setPosition(spawn.m_x, spawn.m_y);
 		enemy->setRotation(180.f);
 		m_scene_layers[static_cast<int>(SceneLayers::kUpperAir)]->AttachChild(std::move(enemy));
@@ -204,13 +203,10 @@ void World::SpawnEnemies()
 
 void World::AddEnemies()
 {
-	AddEnemy(AircraftType::kRaptor, 0.f, 500.f);
-	AddEnemy(AircraftType::kRaptor, 0.f, 1000.f);
-	AddEnemy(AircraftType::kRaptor, 100.f, 1100.f);
-	AddEnemy(AircraftType::kRaptor, -100.f, 1100.f);
-	AddEnemy(AircraftType::kAvenger, -70.f, 1400.f);
-	AddEnemy(AircraftType::kAvenger, 70.f, 1400.f);
-	AddEnemy(AircraftType::kAvenger, 70.f, 1600.f);
+	AddEnemy(CharacterType::kReaper, 0.f, 500.f);
+	AddEnemy(CharacterType::kReaper, 0.f, 1000.f);
+	AddEnemy(CharacterType::kReaper, 100.f, 1100.f);
+	AddEnemy(CharacterType::kReaper, -100.f, 1100.f);
 
 	//Sort the enemies according to y-value so that enemies are checked first
 	std::sort(m_enemy_spawn_points.begin(), m_enemy_spawn_points.end(), [](SpawnPoint lhs, SpawnPoint rhs)
@@ -220,7 +216,7 @@ void World::AddEnemies()
 
 }
 
-void World::AddEnemy(AircraftType type, float relx, float rely)
+void World::AddEnemy(CharacterType type, float relx, float rely)
 {
 	SpawnPoint spawn(type, m_spawn_position.x + relx, m_spawn_position.y - rely);
 	m_enemy_spawn_points.emplace_back(spawn);
@@ -262,7 +258,7 @@ void World::GuideMissiles()
 	//Target the closest enemy in the world
 	Command enemyCollector;
 	enemyCollector.category = static_cast<int>(ReceiverCategories::kEnemyAircraft);
-	enemyCollector.action = DerivedAction<Aircraft>([this](Aircraft& enemy, sf::Time)
+	enemyCollector.action = DerivedAction<Character>([this](Character& enemy, sf::Time)
 		{
 			if (!enemy.IsDestroyed())
 			{
@@ -280,9 +276,9 @@ void World::GuideMissiles()
 			}
 
 			float min_distance = std::numeric_limits<float>::max();
-			Aircraft* closest_enemy = nullptr;
+			Character* closest_enemy = nullptr;
 
-			for (Aircraft* enemy : m_active_enemies)
+			for (Character* enemy : m_active_enemies)
 			{
 				float enemy_distance = Distance(missile, *enemy);
 				if (enemy_distance < min_distance)
@@ -331,8 +327,8 @@ void World::HandleCollisions()
 	{
 		if (MatchesCategories(pair, ReceiverCategories::kPlayerAircraft, ReceiverCategories::kEnemyAircraft))
 		{
-			auto& player = static_cast<Aircraft&>(*pair.first);
-			auto& enemy = static_cast<Aircraft&>(*pair.second);
+			auto& player = static_cast<Character&>(*pair.first);
+			auto& enemy = static_cast<Character&>(*pair.second);
 			//Collision response
 			player.Damage(enemy.GetHitPoints());
 			enemy.Destroy();
@@ -340,7 +336,7 @@ void World::HandleCollisions()
 
 		else if (MatchesCategories(pair, ReceiverCategories::kPlayerAircraft, ReceiverCategories::kPickup))
 		{
-			auto& player = static_cast<Aircraft&>(*pair.first);
+			auto& player = static_cast<Character&>(*pair.first);
 			auto& pickup = static_cast<Pickup&>(*pair.second);
 			//Collision response
 			pickup.Apply(player);
@@ -349,7 +345,7 @@ void World::HandleCollisions()
 		}
 		else if (MatchesCategories(pair, ReceiverCategories::kPlayerAircraft, ReceiverCategories::kEnemyProjectile) || MatchesCategories(pair, ReceiverCategories::kEnemyAircraft, ReceiverCategories::kAlliedProjectile))
 		{
-			auto& aircraft = static_cast<Aircraft&>(*pair.first);
+			auto& aircraft = static_cast<Character&>(*pair.first);
 			auto& projectile = static_cast<Projectile&>(*pair.second);
 			//Collision response
 			aircraft.Damage(projectile.GetDamage());

@@ -30,7 +30,7 @@
     <ClCompile Include="Entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Aircraft.cpp">
+    <ClCompile Include="Character.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SceneNode.cpp">
@@ -152,10 +152,10 @@
     <ClInclude Include="Entity.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AircraftType.hpp">
+    <ClInclude Include="CharacterType.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Aircraft.hpp">
+    <ClInclude Include="Character.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SceneNode.hpp">
