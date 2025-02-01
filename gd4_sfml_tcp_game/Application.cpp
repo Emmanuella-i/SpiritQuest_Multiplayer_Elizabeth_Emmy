@@ -12,16 +12,23 @@ Application::Application() : m_window(sf::VideoMode(1024, 576), "States", sf::St
 	, m_stack(State::Context(m_window, m_textures, m_fonts, m_player, m_music, m_sound))
 {
 	m_window.setKeyRepeatEnabled(false);
-	m_fonts.Load(Font::kMain, "Media/Fonts/Sansation.ttf");
-	m_textures.Load(TextureID::kTitleScreen, "Media/Textures/TitleScreen.png");
-	m_textures.Load(TextureID::kButtonNormal, "Media/Textures/ButtonNormal.png");
-	m_textures.Load(TextureID::kButtonSelected, "Media/Textures/ButtonSelected.png");
-	m_textures.Load(TextureID::kButtonActivated, "Media/Textures/ButtonPressed.png");
-	m_textures.Load(TextureID::kButtons, "Media/Textures/Buttons.png");
+	m_fonts.Load(Font::kMain, "Media/Fonts/Super-Mario-World.ttf");
+	m_textures.Load(TextureID::kTitleScreen, "Media/Textures/SpiritQuestBackground.png");
+	m_textures.Load(TextureID::kButtonNormal, "Media/Textures/32x32 Blue Bubble Buttons/Blank Buttons/Blue_Button_01.png");
+	m_textures.Load(TextureID::kButtonSelected, "Media/Textures/32x32 Blue Bubble Buttons/Blank Buttons/Blue_Button_02.png");
+	m_textures.Load(TextureID::kButtonActivated, "Media/Textures/32x32 Blue Bubble Buttons/Blank Buttons/Blue_Button_03.png");
+	m_textures.Load(TextureID::kButtons, "Media/Textures/32x32 Blue Bubble Buttons/Blank Buttons/Blue_Button_01.png");
 
 	RegisterStates();
 	m_stack.PushState(StateID::kTitle);
 }
+
+
+
+
+
+	
+
 
 void Application::Run()
 {
