@@ -15,6 +15,7 @@ enum class TextureID
 	kFireSpread,
 	kFireRate,
 	kFinishLine,
+	kBottom,
 	kEntities,
 	kJungle,
 	kButtons,

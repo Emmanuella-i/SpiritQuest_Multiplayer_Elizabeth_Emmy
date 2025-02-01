@@ -88,7 +88,7 @@ bool World::HasPlayerReachedEnd() const
 void World::LoadTextures()
 {
 	m_textures.Load(TextureID::kGhost, "Media/Textures/Ghost/Ghost(1).png");
-	m_textures.Load(TextureID::kReaper, "Media/Textures/Reaper (Animated Pixel Art)/Preview/Reap.png");
+	m_textures.Load(TextureID::kReaper, "Media/Textures/Reaper(AnimatedPixelArt)/Preview/Reap.png");
 	m_textures.Load(TextureID::kLandscape, "Media/Textures/Clouds 3/1.png");
 	m_textures.Load(TextureID::kBullet, "Media/Textures/Bullet.png");
 	m_textures.Load(TextureID::kMissile, "Media/Textures/Missile.png");
@@ -98,8 +98,9 @@ void World::LoadTextures()
 	m_textures.Load(TextureID::kFireSpread, "Media/Textures/FireSpread.png");
 	m_textures.Load(TextureID::kFireRate, "Media/Textures/FireRate.png");
 	m_textures.Load(TextureID::kFinishLine, "Media/Textures/FinishLine.png");
+	m_textures.Load(TextureID::kBottom, "Media/Textures/Pixel-16px Graveyard/parallax/parallax2(exp).png");
 
-	m_textures.Load(TextureID::kEntities, "Media/Textures/Reaper (Animated Pixel Art)/Preview/Reap(1).png");
+	m_textures.Load(TextureID::kEntities, "Media/Textures/Reaper(AnimatedPixelArt)/Preview/Reap(1).png");
 	m_textures.Load(TextureID::kJungle, "Media/Textures/Clouds 3/1.png");
 	m_textures.Load(TextureID::kExplosion, "Media/Textures/Explosion.png");
 	m_textures.Load(TextureID::kParticle, "Media/Textures/Particle.png");
@@ -128,6 +129,12 @@ void World::BuildScene()
 	background_sprite->setPosition(m_world_bounds.left, m_world_bounds.top);
 	m_scene_layers[static_cast<int>(SceneLayers::kBackground)]->AttachChild(std::move(background_sprite));
 
+	//Add the bottom sprite to the world
+	sf::Texture& bottom_texture = m_textures.Get(TextureID::kBottom);
+	std::unique_ptr<SpriteNode> bottom_sprite(new SpriteNode(bottom_texture));
+	bottom_sprite->setPosition(0.f, 2400.f);
+	m_scene_layers[static_cast<int>(SceneLayers::kLowerAir)]->AttachChild(std::move(bottom_sprite));
+
 	//Add the finish line
 	sf::Texture& finish_texture = m_textures.Get(TextureID::kFinishLine);
 	std::unique_ptr<SpriteNode> finish_sprite(new SpriteNode(finish_texture));
@@ -140,6 +147,8 @@ void World::BuildScene()
 	m_player_aircraft->setPosition(m_spawn_position);
 	m_player_aircraft->SetVelocity(40.f, m_scrollspeed);
 	m_scene_layers[static_cast<int>(SceneLayers::kUpperAir)]->AttachChild(std::move(leader));
+
+
 
 	//Add the particle nodes to the scene
 	std::unique_ptr<ParticleNode> smokeNode(new ParticleNode(ParticleType::kSmoke, m_textures));
@@ -154,11 +163,9 @@ void World::BuildScene()
 
 	AddEnemies();
 
-	/*std::unique_ptr<Aircraft> left_escort(new Aircraft(AircraftType::kRaptor, m_textures, m_fonts));
-	left_escort->setPosition(-80.f, 50.f);
-	m_player_aircraft->AttachChild(std::move(left_escort));
+	
 
-	std::unique_ptr<Aircraft> right_escort(new Aircraft(AircraftType::kRaptor, m_textures, m_fonts));
+	/*std::unique_ptr<Aircraft> right_escort(new Aircraft(AircraftType::kRaptor, m_textures, m_fonts));
 	right_escort->setPosition(80.f, 50.f);
 	m_player_aircraft->AttachChild(std::move(right_escort));*/
 }
