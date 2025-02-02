@@ -1,3 +1,5 @@
+//EI, ET
+
 #include "World.hpp"
 #include "Pickup.hpp"
 #include "Projectile.hpp"
@@ -145,9 +147,12 @@ void World::BuildScene()
 	//EI: Add the cloud sprite to the world
 	sf::Time dt;
 	sf::Texture& cloud_texture = m_textures.Get(TextureID::kCloud);
+	sf::IntRect textureRectCloud(m_world_bounds);
+	cloud_texture.setRepeated(true);
 	std::unique_ptr<SpriteNode> cloud_sprite(new SpriteNode(cloud_texture));
-	cloud_sprite->setPosition(5.f*dt.asSeconds(), m_world_bounds.top);
-	m_scene_layers[static_cast<int>(SceneLayers::kLowerAir)]->AttachChild(std::move(cloud_sprite));
+	cloud_sprite->setPosition(m_world_bounds.left, 2400.f);
+	m_scene_layers[static_cast<int>(SceneLayers::kBackground)]->AttachChild(std::move(cloud_sprite));
+	//cloud_texture.move(40.f, m_scrollspeed);
 
 	//EI: Add Platforms
 	sf::Texture& plat1_texture = m_textures.Get(TextureID::kPlat1);
