@@ -313,6 +313,7 @@ void World::DestroyEntitiesOutsideView()
 {
 	Command command;
 	command.category = static_cast<int>(ReceiverCategories::kEnemyAircraft) | static_cast<int>(ReceiverCategories::kProjectile) | static_cast<int>(ReceiverCategories::kPlayer1);
+	command.category = static_cast<int>(ReceiverCategories::kEnemyAircraft) | static_cast<int>(ReceiverCategories::kProjectile) | static_cast<int>(ReceiverCategories::kPlayer2);//ET, same constrainst for player 2
 	command.action = DerivedAction<Entity>([this](Entity& e, sf::Time dt)
 		{
 			//Does the object intersect with the battlefield
@@ -322,6 +323,10 @@ void World::DestroyEntitiesOutsideView()
 			}
 		});
 	m_command_queue.Push(command);
+
+	
+	
+	
 }
 
 void World::GuideMissiles()
@@ -405,6 +410,14 @@ void World::HandleCollisions()
 			enemy.Destroy();
 		}
 
+		//ET: destroy player if player 2 collides with it 
+		else if (MatchesCategories(pair, ReceiverCategories::kPlayer1, ReceiverCategories::kPlayer2))
+		{
+			auto& player = static_cast<Character&>(*pair.first);
+			auto& enemy = static_cast<Character&>(*pair.second);
+			//Collision response
+			player .Destroy();
+		}
 		else if (MatchesCategories(pair, ReceiverCategories::kPlayer1, ReceiverCategories::kPickup))
 		{
 			auto& player = static_cast<Character&>(*pair.first);

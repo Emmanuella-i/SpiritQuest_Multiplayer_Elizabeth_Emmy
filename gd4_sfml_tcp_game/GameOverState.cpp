@@ -3,7 +3,7 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include "Player.hpp"
 #include "Utility.hpp"
-
+/*ET*/
 
 GameOverState::GameOverState(StateStack& stack, Context context)
     : State(stack, context)
@@ -14,17 +14,30 @@ GameOverState::GameOverState(StateStack& stack, Context context)
     sf::Vector2f window_size(context.window->getSize());
 
     m_game_over_text.setFont(font);
-    if (context.player->GetMissionStatus() == MissionStatus::kMissionSuccessGhost)
+
+    if (context.player->GetMissionStatus() == MissionStatus::kMissionSuccessGhostFL)
     {
-        m_game_over_text.setString("The Ghost has escaped the Reaper! \n           Player 1 wins");
+        m_game_over_text.setString("The Ghost has escaped the Reaper! \n \n          Player 1 wins");
     }
-    else if (context.player->GetMissionStatus() == MissionStatus::kMissionSuccessReaper)
+    else if (context.player->GetMissionStatus() == MissionStatus::kMissionSuccessReaperCG)
     {
-        m_game_over_text.setString("The Reaper has reaped the Ghost! \n     Player 2 wins");
+        m_game_over_text.setString("The Reaper has reaped the Ghost! \n \n           Player 2 wins");
+    }
+    else if (context.player->GetMissionStatus() == MissionStatus::kMissionSuccessGhostRD)
+    {
+        m_game_over_text.setString("The Reaper was Defeated! \n \n        Player 1 wins");
+    }
+    else if (context.player->GetMissionStatus() == MissionStatus::kMissionSuccessReaperGD)
+    {
+        m_game_over_text.setString("The Ghost was Defeated! \n \n         Player 2 wins");
+    }
+    else if (context.player->GetMissionStatus() == MissionStatus::kMissionFailureReaper)
+    {
+        m_game_over_text.setString("The Reaper has Failed! \n \n         Player 1 wins");
     }
     else
     {
-        m_game_over_text.setString("You both fail...\n     Try again");
+        m_game_over_text.setString("You both fail...\n \n    Try again");
     }
         
     m_game_over_text.setCharacterSize(30);
