@@ -126,7 +126,7 @@ void Character::CollectMissile(unsigned int count)
 
 void Character::UpdateTexts()
 {
-	m_spirit_energy_display->SetString(std::to_string(GetHitPoints()) + "SPIRIT ENERGY");
+	m_spirit_energy_display->SetString(std::to_string(GetHitPoints()) + "S-ENERGY");
 	m_spirit_energy_display->setPosition(0.f, 50.f);
 	m_spirit_energy_display->setRotation(-getRotation());
 
@@ -277,10 +277,10 @@ void Character::UpdateCurrent(sf::Time dt, CommandQueue& commands)
 
 void Character::CheckProjectileLaunch(sf::Time dt, CommandQueue& commands)
 {
-	if (!IsAllied())
-	{
-		Fire();
-	}
+	//if (!IsAllied())
+	//{
+		//Fire();
+	//}
 
 	if (m_is_firing && m_fire_countdown <= sf::Time::Zero)
 	{
