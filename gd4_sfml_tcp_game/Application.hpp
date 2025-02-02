@@ -22,6 +22,7 @@ private:
 private:
 	sf::RenderWindow m_window;
 	Player m_player;
+	Player m_player2;// et // second player
 
 	TextureHolder m_textures;
 	FontHolder m_fonts;

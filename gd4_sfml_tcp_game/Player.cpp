@@ -14,12 +14,12 @@ struct CharacterMover
     sf::Vector2f velocity;
 };
 
-Player::Player(ID id) : m_current_mission_status(MissionStatus::kMissionRunning)
+Player::Player() : m_current_mission_status(MissionStatus::kMissionRunning)
 {
-    const bool isGhost = (id == ID::Player1);
+  //  const bool isGhost = (id == ID::Player1);
 
     // PLAYER 1(Ghost) Controls (WASD +Space/M)
-    if (isGhost) {
+   // if (isGhost) {
         //Set initial key bindings
         m_key_binding[sf::Keyboard::A] = Action::kMoveLeft;
         m_key_binding[sf::Keyboard::D] = Action::kMoveRight;
@@ -27,8 +27,9 @@ Player::Player(ID id) : m_current_mission_status(MissionStatus::kMissionRunning)
         m_key_binding[sf::Keyboard::S] = Action::kMoveDown;
         m_key_binding[sf::Keyboard::M] = Action::kMissileFire;
         m_key_binding[sf::Keyboard::Space] = Action::kBulletFire;
-    }
-    else {
+
+   // }
+  ///  else {
         // ET:PLAYER 2(Reaper) Controls (Arrow Keys +Enter/Shift)
         m_key_binding[sf::Keyboard::Left] = Action::kMoveLeftP2;
         m_key_binding[sf::Keyboard::Right] = Action::kMoveRightP2;
@@ -37,17 +38,35 @@ Player::Player(ID id) : m_current_mission_status(MissionStatus::kMissionRunning)
         m_key_binding[sf::Keyboard::RShift] = Action::kMissileFireP2;
         m_key_binding[sf::Keyboard::Enter] = Action::kBulletFireP2;
 
-    }
+    //}
     // unsigned int 32bit .. actions assigned to correct player category 
-    unsigned int category = (isGhost) ? static_cast<unsigned int> (ReceiverCategories::kPlayer1):static_cast <unsigned int>(ReceiverCategories::kPlayer2);
+   // unsigned int category = (isGhost) ? static_cast<unsigned int> (ReceiverCategories::kPlayer1):static_cast <unsigned int>(ReceiverCategories::kPlayer2);
     //Set initial action bindings
     InitialiseActions();
 
+    //ET individually sets each command to player 
+
+    m_action_binding[Action::kMoveLeft].category = static_cast<unsigned int>(ReceiverCategories::kPlayer1);
+    m_action_binding[Action::kMoveRight].category = static_cast<unsigned int>(ReceiverCategories::kPlayer1);
+    m_action_binding[Action::kMoveUp].category = static_cast<unsigned int>(ReceiverCategories::kPlayer1);
+    m_action_binding[Action::kMoveDown].category = static_cast<unsigned int>(ReceiverCategories::kPlayer1);
+    m_action_binding[Action::kMissileFire].category = static_cast<unsigned int>(ReceiverCategories::kPlayer1);
+    m_action_binding[Action::kBulletFire].category = static_cast<unsigned int>(ReceiverCategories::kPlayer1);
+
+    m_action_binding[Action::kMoveLeftP2].category = static_cast<unsigned int>(ReceiverCategories::kPlayer2);
+    m_action_binding[Action::kMoveRightP2].category = static_cast<unsigned int>(ReceiverCategories::kPlayer2);
+    m_action_binding[Action::kMoveUpP2].category = static_cast<unsigned int>(ReceiverCategories::kPlayer2);
+    m_action_binding[Action::kMoveDownP2].category = static_cast<unsigned int>(ReceiverCategories::kPlayer2);
+    m_action_binding[Action::kMissileFireP2].category = static_cast<unsigned int>(ReceiverCategories::kPlayer2);
+    m_action_binding[Action::kBulletFireP2].category = static_cast<unsigned int>(ReceiverCategories::kPlayer2);
+
+
+
     //Assign all categories to a player's aircraft
-    for (auto& pair : m_action_binding)
-    {
-        pair.second.category = static_cast<unsigned int>(ReceiverCategories::kPlayer1);
-    }
+    //for (auto& pair : m_action_binding)
+   // {
+//pair.second.category = static_cast<unsigned int>(ReceiverCategories::kPlayer1);
+   // }
 }
 
 void Player::HandleEvent(const sf::Event& event, CommandQueue& command_queue)
@@ -62,7 +81,7 @@ void Player::HandleEvent(const sf::Event& event, CommandQueue& command_queue)
     }
 }
 
-void Player::HandleRealTimeInput(CommandQueue& command_queue)
+/*void Player::HandleRealTimeInput(CommandQueue& command_queue)
 {
     //Check if any of the key bindings are pressed
     for (auto pair : m_key_binding)
@@ -72,7 +91,7 @@ void Player::HandleRealTimeInput(CommandQueue& command_queue)
             command_queue.Push(m_action_binding[pair.second]);
         }
     }
-}
+}*/
 
 void Player::AssignKey(Action action, sf::Keyboard::Key key)
 {
@@ -117,9 +136,12 @@ void Player::InitialiseActions()
 {
     const float kPlayerSpeed = 200.f;
     //ET:as before assigning actions for player 1
-    bool isGhost = (m_id == ID::Player1);
+   // bool isGhost = (m_id == ID::Player1);
     //P1 Ghost 
-    if (isGhost){
+    //if (isGhost){
+    m_action_binding[Action::kMoveRight].category = static_cast<unsigned int>(ReceiverCategories::kPlayer2);
+    m_action_binding[Action::kMoveRight].category = static_cast<unsigned int>(ReceiverCategories::kPlayer1);
+
     m_action_binding[Action::kMoveLeft].action = DerivedAction<Character>(CharacterMover(-kPlayerSpeed, 0.f));
     m_action_binding[Action::kMoveRight].action = DerivedAction<Character>(CharacterMover(kPlayerSpeed, 0.f));
     m_action_binding[Action::kMoveUp].action = DerivedAction<Character>(CharacterMover(0.f, -kPlayerSpeed));
@@ -135,9 +157,9 @@ void Player::InitialiseActions()
                 a.LaunchMissile();
             }
         );
-    }
+   // }
     //ET:Player2 Reaper
-    else {
+   // else {
         m_action_binding[Action::kMoveLeftP2].action = DerivedAction<Character>(CharacterMover(-kPlayerSpeed, 0.f));
         m_action_binding[Action::kMoveRightP2].action = DerivedAction<Character>(CharacterMover(kPlayerSpeed, 0.f));
         m_action_binding[Action::kMoveUpP2].action = DerivedAction<Character>(CharacterMover(0.f, -kPlayerSpeed));
@@ -155,7 +177,7 @@ void Player::InitialiseActions()
         );
 
     }
-}
+//}
 
 bool Player::IsRealTimeAction(Action action)
 {

@@ -29,7 +29,7 @@ TextureID ToTextureID(CharacterType type)
 	return TextureID::kGhost;
 }
 
-Character::Character(CharacterType type, const TextureHolder& textures, const FontHolder& fonts, int playerID)  
+Character::Character(CharacterType type, const TextureHolder& textures, const FontHolder& fonts)  
 	: Entity(Table[static_cast<int>(type)].m_hitpoints)
 	, m_type(type)
 	, m_sprite(textures.Get(Table[static_cast<int>(type)].m_texture), Table[static_cast<int>(type)].m_texture_rect)
@@ -48,7 +48,7 @@ Character::Character(CharacterType type, const TextureHolder& textures, const Fo
 	, m_show_explosion(true)
 	, m_spawned_pickup(false)
 	, m_played_explosion_sound(false)
-	, m_playerID(playerID)// ET: initialising player ID
+	
 
 {
 	m_explosion.SetFrameSize(sf::Vector2i(256, 256));
@@ -96,6 +96,7 @@ unsigned int Character::GetCategory() const
 	if (IsAllied())
 	{
 		return static_cast<unsigned int>(ReceiverCategories::kPlayer1);
+		return static_cast<unsigned int>(ReceiverCategories::kPlayer2);
 	}
 	return static_cast<unsigned int>(ReceiverCategories::kEnemyAircraft);
 

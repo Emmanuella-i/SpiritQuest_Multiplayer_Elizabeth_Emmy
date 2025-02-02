@@ -12,8 +12,8 @@ class Player
 {
 	// ET: adding constructor to handle player IDs 
 public:
-	enum class ID{Player1, Player2};
-	Player(ID player_id); // constructor with ID
+	//enum class ID{Player1, Player2};
+	Player(); 
 
 	void HandleEvent(const sf::Event& event, CommandQueue& command_queue);
 	void HandleRealTimeInput(CommandQueue& command_queue);
@@ -31,6 +31,6 @@ private:
 	std::map<sf::Keyboard::Key, Action> m_key_binding;
 	std::map<Action, Command> m_action_binding;
 	MissionStatus m_current_mission_status;
-	ID m_id;//player1 /2 ids
+	//ID m_id;//player1 /2 ids
 };
 

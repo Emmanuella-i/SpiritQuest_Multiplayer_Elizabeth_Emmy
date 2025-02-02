@@ -157,7 +157,7 @@ void World::BuildScene()
 	m_scene_layers[static_cast<int>(SceneLayers::kBackground)]->AttachChild(std::move(finish_sprite));
 
 	//Add the player 1's character
-	std::unique_ptr<Character> leader(new Character(CharacterType::kGhost, m_textures, m_fonts, m_playerID));
+	std::unique_ptr<Character> leader(new Character(CharacterType::kGhost, m_textures, m_fonts));
 	m_player_aircraft = leader.get();
 	m_player_aircraft->setPosition(m_spawn_position);
 	m_player_aircraft->SetVelocity(40.f, 40.f);
@@ -165,11 +165,11 @@ void World::BuildScene()
 
 	//ET: adding player 2
 	//Add the player 2's chracter
-	std::unique_ptr<Character> leader(new Character(CharacterType::kReaper, m_textures, m_fonts, m_playerID));
-	m_player2_aircraft = leader.get();
+	std::unique_ptr<Character> leader2(new Character(CharacterType::kReaper, m_textures, m_fonts));
+	m_player2_aircraft = leader2.get();
 	m_player2_aircraft->setPosition(m_spawn_position);
 	m_player2_aircraft->SetVelocity(40.f, 40.f);
-	m_scene_layers[static_cast<int>(SceneLayers::kUpperAir)]->AttachChild(std::move(leader));
+	m_scene_layers[static_cast<int>(SceneLayers::kUpperAir)]->AttachChild(std::move(leader2));
 
 
 	//Add the particle nodes to the scene
