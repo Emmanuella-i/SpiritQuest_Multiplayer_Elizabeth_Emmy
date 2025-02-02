@@ -18,8 +18,8 @@ Application::Application() : m_window(sf::VideoMode(1024, 576), "States", sf::St
 	m_textures.Load(TextureID::kButtonSelected, "Media/Textures/32x32 Blue Bubble Buttons/Blank Buttons/Blue_Button_02.png");
 	m_textures.Load(TextureID::kButtonActivated, "Media/Textures/32x32 Blue Bubble Buttons/Blank Buttons/Blue_Button_03.png");
 	m_textures.Load(TextureID::kButtons, "Media/Textures/BlueButtons.png");
-	m_textures.Load(TextureID::kSettingsBackground, "Media/Textures/Clouds 3/1.png");
-
+	m_textures.Load(TextureID::kSettingsBackground, "Media/Textures/Clouds 3/1.png");//ET
+	m_textures.Load(TextureID::kSettingsHeader, "Media/Textures/32x32 Blue Bubble Buttons/Buttons With Text/Text_Settings_Button_021.png");
 	RegisterStates();
 	m_stack.PushState(StateID::kTitle);
 }

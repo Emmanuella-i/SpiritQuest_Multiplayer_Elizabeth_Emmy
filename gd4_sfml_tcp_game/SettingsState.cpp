@@ -9,6 +9,8 @@ SettingsState::SettingsState(StateStack& stack, Context context)
 {
 	m_background_sprite.setTexture(context.textures->Get(TextureID::kSettingsBackground));
 
+	m_settings_header.setTexture(context.textures->Get(TextureID::kSettingsHeader));// to load heading image form the 
+	m_settings_header.setPosition(360.f, 40.f);
 	// posistion for player 1 and player 2 on the x axis of screen
 	float p1X = 80.f;
 	float p2X = 500.f;
@@ -36,13 +38,18 @@ SettingsState::SettingsState(StateStack& stack, Context context)
 	back_button->SetText("Back");
 	back_button->SetCallback(std::bind(&SettingsState::RequestStackPop, this));
 	m_gui_container.Pack(back_button);
+
+
+
 }
 
 void SettingsState::Draw()
 {
 	sf::RenderWindow& window = *GetContext().window;
 	window.draw(m_background_sprite);
+	window.draw(m_settings_header);// for the title above buttons 
 	window.draw(m_gui_container);
+	
 }
 
 bool SettingsState::Update(sf::Time dt)
