@@ -18,6 +18,7 @@ void gui::Label::SetText(const std::string& text)
 
 void gui::Label::HandleEvent(const sf::Event& event)
 {
+
 }
 
 void gui::Label::draw(sf::RenderTarget& target, sf::RenderStates states) const

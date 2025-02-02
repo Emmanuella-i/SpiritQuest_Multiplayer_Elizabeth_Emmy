@@ -54,7 +54,10 @@ void Entity::Repair(int points)
 void Entity::Damage(int points)
 {
     assert(points > 0);
+    float less = 5.f;
     m_hitpoints -= points;
+    m_velocity.x -= less;
+    m_velocity.y -= less;
     
 }
 

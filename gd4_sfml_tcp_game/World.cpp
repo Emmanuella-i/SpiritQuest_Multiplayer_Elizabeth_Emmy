@@ -108,6 +108,7 @@ void World::LoadTextures()
 
 	m_textures.Load(TextureID::kPlat1, "Media/Textures/Pixel-16px Graveyard/parallax/plat1.png");
 	m_textures.Load(TextureID::kPlat2, "Media/Textures/Pixel-16px Graveyard/parallax/plat2.png");
+	m_textures.Load(TextureID::kPlat3, "Media/Textures/Pixel-16px Graveyard/parallax/plat3.png");
 
 	m_textures.Load(TextureID::kEntities, "Media/Textures/Reaper(AnimatedPixelArt)/Preview/Reap(1).png");
 	m_textures.Load(TextureID::kJungle, "Media/Textures/Clouds 3/1.png");
@@ -166,6 +167,11 @@ void World::BuildScene()
 	std::unique_ptr<SpriteNode> plat2_sprite(new SpriteNode(plat2_texture));
 	plat2_sprite->setPosition(0.f, 1000.f);
 	m_scene_layers[static_cast<int>(SceneLayers::kUpperAir)]->AttachChild(std::move(plat2_sprite));
+
+	sf::Texture& plat3_texture = m_textures.Get(TextureID::kPlat3);
+	std::unique_ptr<SpriteNode> plat3_sprite(new SpriteNode(plat3_texture));
+	plat3_sprite->setPosition(0.f, 0.f);
+	m_scene_layers[static_cast<int>(SceneLayers::kUpperAir)]->AttachChild(std::move(plat3_sprite));
 
 	//Add the finish line
 	sf::Texture& finish_texture = m_textures.Get(TextureID::kFinishLine);
