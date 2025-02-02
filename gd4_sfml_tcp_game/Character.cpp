@@ -1,3 +1,5 @@
+/* E,I*/
+
 #include "Character.hpp"
 #include "TextureID.hpp"
 #include "ResourceHolder.hpp"

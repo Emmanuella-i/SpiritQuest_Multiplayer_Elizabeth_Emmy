@@ -100,6 +100,9 @@ void World::LoadTextures()
 	m_textures.Load(TextureID::kFinishLine, "Media/Textures/FinishLine.png");
 	m_textures.Load(TextureID::kBottom, "Media/Textures/Pixel-16px Graveyard/parallax/parallax2(exp).png");
 
+	m_textures.Load(TextureID::kPlat1, "Media/Textures/Pixel-16px Graveyard/parallax/plat1.png");
+	m_textures.Load(TextureID::kPlat2, "Media/Textures/Pixel-16px Graveyard/parallax/plat2.png");
+
 	m_textures.Load(TextureID::kEntities, "Media/Textures/Reaper(AnimatedPixelArt)/Preview/Reap(1).png");
 	m_textures.Load(TextureID::kJungle, "Media/Textures/Clouds 3/1.png");
 	m_textures.Load(TextureID::kExplosion, "Media/Textures/Explosion.png");
@@ -134,6 +137,17 @@ void World::BuildScene()
 	std::unique_ptr<SpriteNode> bottom_sprite(new SpriteNode(bottom_texture));
 	bottom_sprite->setPosition(0.f, 2400.f);
 	m_scene_layers[static_cast<int>(SceneLayers::kLowerAir)]->AttachChild(std::move(bottom_sprite));
+
+	//Add Platforms
+	sf::Texture& plat1_texture = m_textures.Get(TextureID::kPlat1);
+	std::unique_ptr<SpriteNode> plat1_sprite(new SpriteNode(plat1_texture));
+	plat1_sprite->setPosition(0.f, 2200.f);
+	m_scene_layers[static_cast<int>(SceneLayers::kUpperAir)]->AttachChild(std::move(plat1_sprite));
+
+	sf::Texture& plat2_texture = m_textures.Get(TextureID::kPlat2);
+	std::unique_ptr<SpriteNode> plat2_sprite(new SpriteNode(plat2_texture));
+	plat2_sprite->setPosition(0.f, 1000.f);
+	m_scene_layers[static_cast<int>(SceneLayers::kUpperAir)]->AttachChild(std::move(plat2_sprite));
 
 	//Add the finish line
 	sf::Texture& finish_texture = m_textures.Get(TextureID::kFinishLine);
