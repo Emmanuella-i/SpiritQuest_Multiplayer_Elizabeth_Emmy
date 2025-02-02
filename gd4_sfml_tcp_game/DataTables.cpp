@@ -19,15 +19,15 @@ std::vector<CharacterData> InitializeCharacterData()
 
     data[static_cast<int>(CharacterType::kReaper)].m_hitpoints = 100;
     data[static_cast<int>(CharacterType::kReaper)].m_speed = 200.f;
-    data[static_cast<int>(CharacterType::kReaper)].m_fire_interval = sf::Time::Zero;
+    data[static_cast<int>(CharacterType::kReaper)].m_fire_interval = sf::seconds(1);
     data[static_cast<int>(CharacterType::kReaper)].m_texture = TextureID::kReaper;
     data[static_cast<int>(CharacterType::kReaper)].m_texture_rect = sf::IntRect(0, 0, 99, 117);
     data[static_cast<int>(CharacterType::kReaper)].m_has_roll_animation = false;
 
     //AI for Raptor
-    data[static_cast<int>(CharacterType::kReaper)].m_directions.emplace_back(Direction(+45.f, 80.f));
-    data[static_cast<int>(CharacterType::kReaper)].m_directions.emplace_back(Direction(-45.f, 160.f));
-    data[static_cast<int>(CharacterType::kReaper)].m_directions.emplace_back(Direction(+45.f, 80.f));
+    //data[static_cast<int>(CharacterType::kReaper)].m_directions.emplace_back(Direction(+45.f, 80.f));
+    //data[static_cast<int>(CharacterType::kReaper)].m_directions.emplace_back(Direction(-45.f, 160.f));
+    //data[static_cast<int>(CharacterType::kReaper)].m_directions.emplace_back(Direction(+45.f, 80.f));
 
 
     return data;

@@ -235,7 +235,7 @@ void World::AdaptPlayerVelocity()
 	if (velocity1.x != 0.f && velocity1.y != 0.f)
 	{
 		m_player_aircraft->SetVelocity(velocity1 / std::sqrt(2.f));
-		HandleDeteriorate();
+		//HandleDeteriorate();
 	}
 	//Add scrolling velocity
 	m_player_aircraft->Accelerate(0.f, 40.f);
@@ -243,7 +243,7 @@ void World::AdaptPlayerVelocity()
 	if (velocity2.x != 0.f && velocity2.y != 0.f)
 	{
 		m_player2_aircraft->SetVelocity(velocity2 / std::sqrt(2.f));
-		HandleDeteriorate();
+		//HandleDeteriorate();
 	}
 	//Add scrolling velocity
 	m_player2_aircraft->Accelerate(0.f, 40.f);

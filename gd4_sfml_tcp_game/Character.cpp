@@ -98,7 +98,8 @@ unsigned int Character::GetCategory() const
 		return static_cast<unsigned int>(ReceiverCategories::kPlayer1);
 		return static_cast<unsigned int>(ReceiverCategories::kPlayer2);
 	}
-	return static_cast<unsigned int>(ReceiverCategories::kEnemyAircraft);
+	//return static_cast<unsigned int>(ReceiverCategories::kEnemyAircraft);
+	return static_cast<unsigned int>(ReceiverCategories::kPlayer2);
 
 }
 
