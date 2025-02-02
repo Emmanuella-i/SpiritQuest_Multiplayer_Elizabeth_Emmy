@@ -129,6 +129,12 @@
     <ClCompile Include="Deteriorate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ProjectileSpawner.hpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ProjectileSpawner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.hpp">

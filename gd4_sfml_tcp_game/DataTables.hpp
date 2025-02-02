@@ -4,6 +4,7 @@
 #include "ResourceIdentifiers.hpp"
 #include <functional>
 #include "Character.hpp"
+#include "ProjectileSpawner.hpp"
 
 
 struct Direction
@@ -23,6 +24,13 @@ struct CharacterData
 	sf::Time m_fire_interval;
 	std::vector<Direction> m_directions;
 	bool m_has_roll_animation;
+};
+
+struct ProjectileSpawnerData
+{
+	sf::Time m_fire_interval;
+	std::vector<Direction> m_directions;
+	TextureID m_texture;
 };
 
 struct ProjectileData
@@ -56,4 +64,5 @@ std::vector<ProjectileData> InitializeProjectileData();
 std::vector<PickupData> InitializePickupData();
 std::vector<ParticleData> InitializeParticleData();
 std::vector<DeteriorateData> InitializeDeteriorateData();
+std::vector<ProjectileSpawnerData> InitializeProjectileSpawnerData();
 

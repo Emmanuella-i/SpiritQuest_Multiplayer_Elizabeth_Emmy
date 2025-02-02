@@ -156,6 +156,8 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PostEffect.cpp" />
     <ClCompile Include="Projectile.cpp" />
+    <ClCompile Include="ProjectileSpawner.cpp" />
+    <ClCompile Include="ProjectileSpawner.hpp" />
     <ClCompile Include="SceneNode.cpp" />
     <ClCompile Include="SettingsState.cpp" />
     <ClCompile Include="SoundNode.cpp" />

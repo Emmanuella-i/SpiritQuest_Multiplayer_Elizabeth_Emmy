@@ -5,6 +5,7 @@
 #include "Character.hpp"
 #include "ParticleType.hpp"
 #include "Deteriorate.hpp"
+#include "ProjectileSpawner.hpp"
 
 std::vector<CharacterData> InitializeCharacterData()
 {
@@ -31,6 +32,15 @@ std::vector<CharacterData> InitializeCharacterData()
 
 
     return data;
+}
+
+std::vector<ProjectileSpawnerData> InitializeProjectileSpawnerData()
+{
+    std::vector<ProjectileSpawnerData> spawnerdata;
+
+    spawnerdata[static_cast<int>(1)].m_fire_interval = sf::seconds(1);
+    spawnerdata[static_cast<int>(1)].m_texture = TextureID::kSpawner;
+    return spawnerdata;
 }
 
 std::vector<ProjectileData> InitializeProjectileData()
