@@ -24,6 +24,6 @@ enum class TextureID
 	kJungle,
 	kButtons,
 	kExplosion,
-	kParticle
-
+	kParticle,
+	kSettingsBackground 
 };

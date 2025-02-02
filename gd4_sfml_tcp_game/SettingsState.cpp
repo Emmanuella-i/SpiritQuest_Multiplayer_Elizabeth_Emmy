@@ -1,3 +1,4 @@
+//ET
 #include "SettingsState.hpp"
 #include "ResourceHolder.hpp"
 #include "Utility.hpp"
@@ -6,15 +7,27 @@ SettingsState::SettingsState(StateStack& stack, Context context)
 	: State(stack, context)
 	, m_gui_container()
 {
-	m_background_sprite.setTexture(context.textures->Get(TextureID::kTitleScreen));
+	m_background_sprite.setTexture(context.textures->Get(TextureID::kSettingsBackground));
 
-	//Build key binding buttons and labels
-	AddButtonLabel(Action::kMoveUp, 150.f, "Move Up", context);
-	AddButtonLabel(Action::kMoveDown, 200.f, "Move Down", context);
-	AddButtonLabel(Action::kMoveRight, 250.f, "Move Right", context);
-	AddButtonLabel(Action::kMoveLeft, 300.f, "Move Left", context);
-	AddButtonLabel(Action::kBulletFire, 350.f, "Fire", context);
-	AddButtonLabel(Action::kMissileFire, 400.f, "Missile Fire", context);
+	// posistion for player 1 and player 2 on the x axis of screen
+	float p1X = 80.f;
+	float p2X = 500.f;
+
+	//Build key binding buttons and labels for player 1  on the Left
+	AddButtonLabel(Action::kMoveUp, p1X,150.f, "P1 Move Up", context);
+	AddButtonLabel(Action::kMoveDown, p1X, 200.f, "P1 Move Down", context);
+	AddButtonLabel(Action::kMoveRight, p1X, 250.f, "P1 Move Right", context);
+	AddButtonLabel(Action::kMoveLeft, p1X, 300.f, "P1 Move Left", context);
+	AddButtonLabel(Action::kBulletFire, p1X, 350.f, "P1 Fire", context);
+	AddButtonLabel(Action::kMissileFire, p1X, 400.f, "P1 Missile Fire", context);
+
+	//Build key binding buttons and labels for player 2  on the Right
+	AddButtonLabel(Action::kMoveUpP2 , p2X, 150.f, " P2 Move Up", context);
+	AddButtonLabel(Action::kMoveDownP2 , p2X, 200.f, "P2 Move Down", context);
+	AddButtonLabel(Action::kMoveRightP2 , p2X, 250.f, "P2 Move Right", context);
+	AddButtonLabel(Action::kMoveLeftP2 , p2X, 300.f, "P2 Move Left", context);
+	AddButtonLabel(Action::kBulletFireP2 , p2X, 350.f, "P2 Fire", context);
+	AddButtonLabel(Action::kMissileFireP2 , p2X, 400.f, "P2 Missile Fire", context);
 
 	UpdateLabels();
 
@@ -77,16 +90,16 @@ void SettingsState::UpdateLabels()
 		m_binding_labels[i]->SetText(Utility::toString(key));
 	}
 }
-
-void SettingsState::AddButtonLabel(Action action, float y, const std::string& text, Context context)
+//ET:adding an x float to change x position
+void SettingsState::AddButtonLabel(Action action, float x, float y, const std::string& text, Context context)
 {
 	m_binding_buttons[static_cast<int>(action)] = std::make_shared<gui::Button>(context);
-	m_binding_buttons[static_cast<int>(action)]->setPosition(80.f, y);
+	m_binding_buttons[static_cast<int>(action)]->setPosition(x, y);// changed here
 	m_binding_buttons[static_cast<int>(action)]->SetText(text);
 	m_binding_buttons[static_cast<int>(action)]->SetToggle(true);
 
 	m_binding_labels[static_cast<int>(action)] = std::make_shared<gui::Label>("", *context.fonts);
-	m_binding_labels[static_cast<int>(action)]->setPosition(300.f, y + 15.f);
+	m_binding_labels[static_cast<int>(action)]->setPosition(x + 300.f, y + 15.f);// chnaged here
 
 	m_gui_container.Pack(m_binding_buttons[static_cast<int>(action)]);
 	m_gui_container.Pack(m_binding_labels[static_cast<int>(action)]);
