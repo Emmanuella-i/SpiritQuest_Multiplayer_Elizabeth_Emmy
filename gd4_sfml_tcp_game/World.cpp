@@ -13,7 +13,8 @@ World::World(sf::RenderTarget& output_target, FontHolder& font, SoundPlayer& sou
 	,m_scenegraph(ReceiverCategories::kNone)
 	,m_scene_layers()
 	,m_world_bounds(0.f,0.f, m_camera.getSize().x, 3000.f)
-	,m_spawn_position(m_camera.getSize().x/2.f, m_world_bounds.height - m_camera.getSize().y/2.f)
+	,m_spawn_position(m_camera.getSize().x/2.f, m_world_bounds.height - m_camera.getSize().y/2.f - 100.f)
+	,m_spawn_position2(m_camera.getSize().x / 2.f, m_world_bounds.height - m_camera.getSize().y / 2.f  )
 	,m_scrollspeed(-50.f)
 	,m_player_aircraft(nullptr)
 	,m_player2_aircraft(nullptr)
@@ -30,7 +31,7 @@ void World::Update(sf::Time dt)
 	m_camera.move(0, m_scrollspeed * dt.asSeconds());
 	
 	m_player_aircraft->SetVelocity(0.f, 0.f);
-
+	m_player2_aircraft->SetVelocity(0.f, 0.f);
 	DestroyEntitiesOutsideView();
 	GuideMissiles();
 
@@ -167,7 +168,7 @@ void World::BuildScene()
 	//Add the player 2's chracter
 	std::unique_ptr<Character> leader2(new Character(CharacterType::kReaper, m_textures, m_fonts));
 	m_player2_aircraft = leader2.get();
-	m_player2_aircraft->setPosition(m_spawn_position);
+	m_player2_aircraft->setPosition(m_spawn_position2);
 	m_player2_aircraft->SetVelocity(40.f, 40.f);
 	m_scene_layers[static_cast<int>(SceneLayers::kUpperAir)]->AttachChild(std::move(leader2));
 
@@ -222,6 +223,7 @@ void World::AdaptPlayerVelocity()
 	}
 	//Add scrolling velocity
 	m_player_aircraft->Accelerate(0.f, 40.f);
+
 	if (velocity2.x != 0.f && velocity2.y != 0.f)
 	{
 		m_player2_aircraft->SetVelocity(velocity2 / std::sqrt(2.f));

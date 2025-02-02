@@ -17,8 +17,8 @@ std::vector<CharacterData> InitializeCharacterData()
     data[static_cast<int>(CharacterType::kGhost)].m_texture_rect = sf::IntRect(0, 0, 48, 62);
     data[static_cast<int>(CharacterType::kGhost)].m_has_roll_animation = true;
 
-    data[static_cast<int>(CharacterType::kReaper)].m_hitpoints = 20;
-    data[static_cast<int>(CharacterType::kReaper)].m_speed = 80.f;
+    data[static_cast<int>(CharacterType::kReaper)].m_hitpoints = 100;
+    data[static_cast<int>(CharacterType::kReaper)].m_speed = 200.f;
     data[static_cast<int>(CharacterType::kReaper)].m_fire_interval = sf::Time::Zero;
     data[static_cast<int>(CharacterType::kReaper)].m_texture = TextureID::kReaper;
     data[static_cast<int>(CharacterType::kReaper)].m_texture_rect = sf::IntRect(0, 0, 84, 64);

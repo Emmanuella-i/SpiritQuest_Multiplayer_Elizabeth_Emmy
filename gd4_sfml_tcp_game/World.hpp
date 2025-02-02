@@ -68,6 +68,7 @@ private:
 	std::array<SceneNode*, static_cast<int>(SceneLayers::kLayerCount)> m_scene_layers;
 	sf::FloatRect m_world_bounds;
 	sf::Vector2f m_spawn_position;
+	sf::Vector2f m_spawn_position2;
 	float m_scrollspeed;
 	Character* m_player_aircraft;
 	Character* m_player2_aircraft;//ET: player 2 

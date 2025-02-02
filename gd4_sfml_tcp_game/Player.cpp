@@ -1,7 +1,7 @@
 #include "Player.hpp"
 #include "ReceiverCategories.hpp"
 #include "Character.hpp"
-
+/*ET mostly for multiplayer programming*/
 struct CharacterMover
 {
     CharacterMover(float vx, float vy) :velocity(vx, vy)
