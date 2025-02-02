@@ -48,19 +48,19 @@ std::vector<ProjectileData> InitializeProjectileData()
     std::vector<ProjectileData> data(static_cast<int>(ProjectileType::kProjectileCount));
     data[static_cast<int>(ProjectileType::kAlliedBullet)].m_damage = 10;
     data[static_cast<int>(ProjectileType::kAlliedBullet)].m_speed = 300;
-    data[static_cast<int>(ProjectileType::kAlliedBullet)].m_texture = TextureID::kEntities;
-    data[static_cast<int>(ProjectileType::kAlliedBullet)].m_texture_rect = sf::IntRect(175, 64, 3, 14);
+    data[static_cast<int>(ProjectileType::kAlliedBullet)].m_texture = TextureID::kBullet;
+    data[static_cast<int>(ProjectileType::kAlliedBullet)].m_texture_rect = sf::IntRect(0, 0, 34, 31);
 
     data[static_cast<int>(ProjectileType::kEnemyBullet)].m_damage = 10;
     data[static_cast<int>(ProjectileType::kEnemyBullet)].m_speed = 300;
-    data[static_cast<int>(ProjectileType::kEnemyBullet)].m_texture = TextureID::kEntities;
-    data[static_cast<int>(ProjectileType::kEnemyBullet)].m_texture_rect = sf::IntRect(175, 64, 3, 14);
+    data[static_cast<int>(ProjectileType::kEnemyBullet)].m_texture = TextureID::kBullet;
+    data[static_cast<int>(ProjectileType::kEnemyBullet)].m_texture_rect = sf::IntRect(0, 0, 34, 31);
 
 
-    data[static_cast<int>(ProjectileType::kMissile)].m_damage = 200;
+    data[static_cast<int>(ProjectileType::kMissile)].m_damage = 20;
     data[static_cast<int>(ProjectileType::kMissile)].m_speed = 150;
-    data[static_cast<int>(ProjectileType::kMissile)].m_texture = TextureID::kEntities;
-    data[static_cast<int>(ProjectileType::kMissile)].m_texture_rect = sf::IntRect(160, 64, 15, 32);
+    data[static_cast<int>(ProjectileType::kMissile)].m_texture = TextureID::kMissile;
+    data[static_cast<int>(ProjectileType::kMissile)].m_texture_rect = sf::IntRect(0, 0, 15, 32);
 
     return data;
 }

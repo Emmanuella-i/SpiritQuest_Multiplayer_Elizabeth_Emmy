@@ -96,7 +96,7 @@ void World::LoadTextures()
 	m_textures.Load(TextureID::kGhost, "Media/Textures/Ghost/ghost-Sheet.png");
 	m_textures.Load(TextureID::kReaper, "Media/Textures/Reaper(AnimatedPixelArt)/Preview/Reap.png");
 	m_textures.Load(TextureID::kLandscape, "Media/Textures/Clouds 3/1.png");
-	m_textures.Load(TextureID::kBullet, "Media/Textures/Bullet.png");
+	m_textures.Load(TextureID::kBullet, "Media/Textures/celestialrock.png");
 	m_textures.Load(TextureID::kMissile, "Media/Textures/Missile.png");
 
 	m_textures.Load(TextureID::kHealthRefill, "Media/Textures/HealthRefill.png");

@@ -126,7 +126,7 @@ void Character::CollectMissile(unsigned int count)
 
 void Character::UpdateTexts()
 {
-	m_spirit_energy_display->SetString(std::to_string(GetHitPoints()) + "S-ENERGY");
+	m_spirit_energy_display->SetString(std::to_string(GetHitPoints()) + "SE");
 	m_spirit_energy_display->setPosition(0.f, 50.f);
 	m_spirit_energy_display->setRotation(-getRotation());
 
