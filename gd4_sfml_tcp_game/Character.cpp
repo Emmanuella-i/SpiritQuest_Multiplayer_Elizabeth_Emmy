@@ -268,7 +268,7 @@ void Character::UpdateCurrent(sf::Time dt, CommandQueue& commands)
 	UpdateTexts();
 	UpdateMovementPattern(dt);
 
-	//UpdateRollAnimation();
+	UpdateRollAnimation();
 
 	//Check if bullets or misiles are fired
 	CheckProjectileLaunch(dt, commands);
@@ -328,6 +328,7 @@ void Character::CheckPickupDrop(CommandQueue& commands)
 	m_spawned_pickup = true;
 }
 
+//E.I
 void Character::UpdateRollAnimation()
 {
 	if (Table[static_cast<int>(m_type)].m_has_roll_animation)
@@ -337,13 +338,32 @@ void Character::UpdateRollAnimation()
 		//Roll left: Texture rect is offset once
 		if (GetVelocity().x < 0.f)
 		{
-			textureRect.left += textureRect.width;
+			int frame = 1;
+			for (int i = frame; i <= 3; ++i)
+			{
+				textureRect.left += frame * textureRect.width-5;
+				//frame = frame + 1;
+				
+			}
+			//textureRect.left += 1 * textureRect.width;
+			//textureRect.left += 2 * textureRect.width;
+			//textureRect.left += 3 * textureRect.width;
 		}
 		else if (GetVelocity().x > 0.f)
 		{
-			textureRect.left += 2 * textureRect.width;
+			int frame = 1;
+			for (int i = frame; i <= 3; ++i)
+			{
+				textureRect.left += frame * textureRect.width - 5;
+				//frame = frame + 1;
+
+			}
+			//textureRect.left += 3 * textureRect.width-5;
+			
 		}
+
 		m_sprite.setTextureRect(textureRect);
+		
 
 	}
 }

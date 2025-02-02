@@ -91,7 +91,7 @@ bool World::HasPlayerReachedEnd() const
 
 void World::LoadTextures()
 {
-	m_textures.Load(TextureID::kGhost, "Media/Textures/Ghost/Ghost(1).png");
+	m_textures.Load(TextureID::kGhost, "Media/Textures/Ghost/ghost-Sheet.png");
 	m_textures.Load(TextureID::kReaper, "Media/Textures/Reaper(AnimatedPixelArt)/Preview/Reap.png");
 	m_textures.Load(TextureID::kLandscape, "Media/Textures/Clouds 3/1.png");
 	m_textures.Load(TextureID::kBullet, "Media/Textures/Bullet.png");
