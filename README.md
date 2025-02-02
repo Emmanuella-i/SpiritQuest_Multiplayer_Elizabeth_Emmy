@@ -1,14 +1,18 @@
+## Description
+*Spirit Quest* is a multiplayer networked game developed using SFML in Visual Studio. Players take on the roles of spirits in a supernatural realm, with one playing as a ghost and another as a reaper, navigating challenges in a mysterious afterlife setting. The game supports up to 16 players in an online environment.
 
+## Assets & Sources
 
+### Textures
+- **Clouds:** [CraftPix - Free Sky with Clouds](https://craftpix.net/freebies/free-sky-with-clouds-background-pixel-art-set/?num=3&count=760&sq=pixel%20ui&pos=11)
+- **Ghost Sprite:** [Master Blazter - Ghost Sprite Pack](https://master-blazter.itch.io/ghostspritepack)
+- **Graveyard Textures:** [Segart - 16px Graveyard Tileset](https://segart.itch.io/2d-16px-graveyard-tileset)
+- **Reaper Sprite:** [Samuel Lee - Reaper Animated Pixel Art](https://samuellee.itch.io/reaper-animated-pixel-art)
+- **Button Pack:** [Ordinary Bumblebee - Basic Buttons Asset Pack](https://ordinary-bumblebee.itch.io/basic-buttons-asset-pack)
 
-Sources:
+### Fonts
+- **Title Screen Font:** [Crang Font](https://www.dafont.com/crang.font?text=Spirit+Quest&back=bitmap)
+- **Additional Font:** [Super Mario World Font](https://www.dafont.com/super-mario-world.font)
 
-Textures:
-clouds : https://craftpix.net/freebies/free-sky-with-clouds-background-pixel-art-set/?num=3&count=760&sq=pixel%20ui&pos=11
-ghost sprite : https://master-blazter.itch.io/ghostspritepack
-graveyard textures: https://segart.itch.io/2d-16px-graveyard-tileset
-reaper sprite : https://samuellee.itch.io/reaper-animated-pixel-art
-
-Fonts:
-Title screen Font : https://www.dafont.com/crang.font?text=Spirit+Quest&back=bitmap
-https://www.dafont.com/super-mario-world.font
+### Music
+- **Menu and Game Theme:** [Rusted Studio - Free Spooky Music](https://rustedstudio.itch.io/free-music-10-spooky)
