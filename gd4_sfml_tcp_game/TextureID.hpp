@@ -18,6 +18,7 @@ enum class TextureID
 	kBottom,
 	kPlat1,
 	kPlat2,
+	kPlat3,
 	kEntities,
 	kJungle,
 	kButtons,

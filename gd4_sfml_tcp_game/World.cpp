@@ -146,7 +146,7 @@ void World::BuildScene()
 
 	sf::Texture& plat2_texture = m_textures.Get(TextureID::kPlat2);
 	std::unique_ptr<SpriteNode> plat2_sprite(new SpriteNode(plat2_texture));
-	plat2_sprite->setPosition(0.f, 2000.f);
+	plat2_sprite->setPosition(0.f, 1000.f);
 	m_scene_layers[static_cast<int>(SceneLayers::kUpperAir)]->AttachChild(std::move(plat2_sprite));
 
 	//Add the finish line
