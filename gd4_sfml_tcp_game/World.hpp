@@ -70,7 +70,7 @@ private:
 	sf::Vector2f m_spawn_position;
 	float m_scrollspeed;
 	Character* m_player_aircraft;
-
+	Character* m_player2_aircraft;//ET: player 2 
 	CommandQueue m_command_queue;
 
 	std::vector<SpawnPoint> m_enemy_spawn_points;

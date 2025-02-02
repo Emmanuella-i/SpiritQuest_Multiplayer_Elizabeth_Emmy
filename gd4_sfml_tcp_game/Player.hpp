@@ -31,6 +31,6 @@ private:
 	std::map<sf::Keyboard::Key, Action> m_key_binding;
 	std::map<Action, Command> m_action_binding;
 	MissionStatus m_current_mission_status;
-	ID m_id;//player1/2 ids
+	ID m_id;//player1 /2 ids
 };
 

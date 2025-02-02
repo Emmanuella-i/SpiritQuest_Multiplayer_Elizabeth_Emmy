@@ -29,7 +29,7 @@ TextureID ToTextureID(CharacterType type)
 	return TextureID::kGhost;
 }
 
-Character::Character(CharacterType type, const TextureHolder& textures, const FontHolder& fonts)  
+Character::Character(CharacterType type, const TextureHolder& textures, const FontHolder& fonts, int playerID)  
 	: Entity(Table[static_cast<int>(type)].m_hitpoints)
 	, m_type(type)
 	, m_sprite(textures.Get(Table[static_cast<int>(type)].m_texture), Table[static_cast<int>(type)].m_texture_rect)
@@ -48,6 +48,7 @@ Character::Character(CharacterType type, const TextureHolder& textures, const Fo
 	, m_show_explosion(true)
 	, m_spawned_pickup(false)
 	, m_played_explosion_sound(false)
+	, m_playerID(playerID)// ET: initialising player ID
 
 {
 	m_explosion.SetFrameSize(sf::Vector2i(256, 256));
@@ -79,7 +80,7 @@ Character::Character(CharacterType type, const TextureHolder& textures, const Fo
 	m_spirit_energy_display = spirit_energy_display.get();
 	AttachChild(std::move(spirit_energy_display));
 
-	if (Character::GetCategory() == static_cast<int>(ReceiverCategories::kPlayerAircraft))
+	if (Character::GetCategory() == static_cast<int>(ReceiverCategories::kPlayer1))
 	{
 		std::string* missile_ammo = new std::string("");
 		std::unique_ptr<TextNode> missile_display(new TextNode(fonts, *missile_ammo));
@@ -94,7 +95,7 @@ unsigned int Character::GetCategory() const
 {
 	if (IsAllied())
 	{
-		return static_cast<unsigned int>(ReceiverCategories::kPlayerAircraft);
+		return static_cast<unsigned int>(ReceiverCategories::kPlayer1);
 	}
 	return static_cast<unsigned int>(ReceiverCategories::kEnemyAircraft);
 

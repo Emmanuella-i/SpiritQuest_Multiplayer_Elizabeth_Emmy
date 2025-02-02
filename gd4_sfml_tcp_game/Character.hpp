@@ -11,7 +11,7 @@
 class Character : public Entity
 {
 public:
-	Character(CharacterType type, const TextureHolder& textures, const FontHolder& fonts);
+	Character(CharacterType type, const TextureHolder& textures, const FontHolder& fonts, int playerID);
 	unsigned int GetCategory() const override;
 
 	void IncreaseFireRate();
@@ -42,6 +42,7 @@ private:
 
 private:
 	CharacterType m_type;
+	int m_playerID;
 	sf::Sprite m_sprite;
 	Animation m_explosion;
 
@@ -66,6 +67,9 @@ private:
 	bool m_show_explosion;
 	bool m_spawned_pickup;
 	bool m_played_explosion_sound;
+
+	// ET: player ID variable member
+	
 
 };
 
