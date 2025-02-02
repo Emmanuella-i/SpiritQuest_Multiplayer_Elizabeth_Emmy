@@ -43,7 +43,7 @@ void World::Update(sf::Time dt)
 
 	HandleCollisions();
 
-
+	//EI:
 	HandleDeteriorate();
 
 	m_scenegraph.RemoveWrecks();
@@ -106,6 +106,7 @@ void World::LoadTextures()
 
 	m_textures.Load(TextureID::kEntities, "Media/Textures/Reaper(AnimatedPixelArt)/Preview/Reap(1).png");
 	m_textures.Load(TextureID::kJungle, "Media/Textures/Clouds 3/1.png");
+	m_textures.Load(TextureID::kCloud, "Media/Textures/Clouds 3/3.png");
 	m_textures.Load(TextureID::kExplosion, "Media/Textures/Explosion.png");
 	m_textures.Load(TextureID::kParticle, "Media/Textures/Particle.png");
 
@@ -123,6 +124,7 @@ void World::BuildScene()
 		m_scenegraph.AttachChild(std::move(layer));
 	}
 
+	
 	//Prepare the background
 	sf::Texture& texture = m_textures.Get(TextureID::kJungle);
 	sf::IntRect textureRect(m_world_bounds);
@@ -133,13 +135,20 @@ void World::BuildScene()
 	background_sprite->setPosition(m_world_bounds.left, m_world_bounds.top);
 	m_scene_layers[static_cast<int>(SceneLayers::kBackground)]->AttachChild(std::move(background_sprite));
 
-	//Add the bottom sprite to the world
+	//EI: Add the bottom sprite to the world
 	sf::Texture& bottom_texture = m_textures.Get(TextureID::kBottom);
 	std::unique_ptr<SpriteNode> bottom_sprite(new SpriteNode(bottom_texture));
 	bottom_sprite->setPosition(0.f, 2400.f);
 	m_scene_layers[static_cast<int>(SceneLayers::kLowerAir)]->AttachChild(std::move(bottom_sprite));
 
-	//Add Platforms
+	//EI: Add the cloud sprite to the world
+	sf::Time dt;
+	sf::Texture& cloud_texture = m_textures.Get(TextureID::kCloud);
+	std::unique_ptr<SpriteNode> cloud_sprite(new SpriteNode(cloud_texture));
+	cloud_sprite->setPosition(5.f*dt.asSeconds(), m_world_bounds.top);
+	m_scene_layers[static_cast<int>(SceneLayers::kLowerAir)]->AttachChild(std::move(cloud_sprite));
+
+	//EI: Add Platforms
 	sf::Texture& plat1_texture = m_textures.Get(TextureID::kPlat1);
 	std::unique_ptr<SpriteNode> plat1_sprite(new SpriteNode(plat1_texture));
 	plat1_sprite->setPosition(0.f, 2200.f);
