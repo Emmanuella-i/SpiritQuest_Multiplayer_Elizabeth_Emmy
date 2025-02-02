@@ -144,7 +144,7 @@ void World::BuildScene()
 	//EI: Add the bottom sprite to the world
 	sf::Texture& bottom_texture = m_textures.Get(TextureID::kBottom);
 	std::unique_ptr<SpriteNode> bottom_sprite(new SpriteNode(bottom_texture));
-	bottom_sprite->setPosition(0.f, 2400.f);
+	bottom_sprite->setPosition(0.f, 2300.f);
 	m_scene_layers[static_cast<int>(SceneLayers::kLowerAir)]->AttachChild(std::move(bottom_sprite));
 
 	//EI: Add the cloud sprite to the world
