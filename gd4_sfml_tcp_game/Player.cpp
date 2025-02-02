@@ -44,7 +44,8 @@ Player::Player() : m_current_mission_status(MissionStatus::kMissionRunning)
     //Set initial action bindings
     InitialiseActions();
 
-    //ET individually sets each command to player 
+    
+//ET individually sets each command to player 
 
     m_action_binding[Action::kMoveLeft].category = static_cast<unsigned int>(ReceiverCategories::kPlayer1);
     m_action_binding[Action::kMoveRight].category = static_cast<unsigned int>(ReceiverCategories::kPlayer1);
@@ -59,7 +60,6 @@ Player::Player() : m_current_mission_status(MissionStatus::kMissionRunning)
     m_action_binding[Action::kMoveDownP2].category = static_cast<unsigned int>(ReceiverCategories::kPlayer2);
     m_action_binding[Action::kMissileFireP2].category = static_cast<unsigned int>(ReceiverCategories::kPlayer2);
     m_action_binding[Action::kBulletFireP2].category = static_cast<unsigned int>(ReceiverCategories::kPlayer2);
-
 
 
     //Assign all categories to a player's aircraft
@@ -81,8 +81,9 @@ void Player::HandleEvent(const sf::Event& event, CommandQueue& command_queue)
     }
 }
 
-/*void Player::HandleRealTimeInput(CommandQueue& command_queue)
+void Player::HandleRealTimeInput(CommandQueue& command_queue)
 {
+    
     //Check if any of the key bindings are pressed
     for (auto pair : m_key_binding)
     {
@@ -91,7 +92,7 @@ void Player::HandleEvent(const sf::Event& event, CommandQueue& command_queue)
             command_queue.Push(m_action_binding[pair.second]);
         }
     }
-}*/
+}
 
 void Player::AssignKey(Action action, sf::Keyboard::Key key)
 {
