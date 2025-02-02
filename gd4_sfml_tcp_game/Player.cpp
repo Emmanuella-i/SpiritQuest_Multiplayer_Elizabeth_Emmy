@@ -1,6 +1,8 @@
 #include "Player.hpp"
 #include "ReceiverCategories.hpp"
 #include "Character.hpp"
+#include <iostream>
+
 /*ET mostly for multiplayer programming*/
 struct CharacterMover
 {
@@ -36,7 +38,7 @@ Player::Player() : m_current_mission_status(MissionStatus::kMissionRunning)
         m_key_binding[sf::Keyboard::Up] = Action::kMoveUpP2;
         m_key_binding[sf::Keyboard::Down] = Action::kMoveDownP2;
         m_key_binding[sf::Keyboard::RShift] = Action::kMissileFireP2;
-        m_key_binding[sf::Keyboard::Enter] = Action::kBulletFireP2;
+        m_key_binding[sf::Keyboard::Backspace] = Action::kBulletFireP2;
 
     //}
     // unsigned int 32bit .. actions assigned to correct player category 
@@ -84,12 +86,17 @@ void Player::HandleEvent(const sf::Event& event, CommandQueue& command_queue)
 void Player::HandleRealTimeInput(CommandQueue& command_queue)
 {
     
+    
     //Check if any of the key bindings are pressed
     for (auto pair : m_key_binding)
     {
         if (sf::Keyboard::isKeyPressed(pair.first) && IsRealTimeAction(pair.second))
         {
             command_queue.Push(m_action_binding[pair.second]);
+            // debug
+            //std::cout << "Key pressed: " << pair.first << " Action: " << static_cast<int>(pair.second) << std::endl;
+            //std::cout << "Command pushed: " << static_cast<int>(pair.second) << std::endl;
+
         }
     }
 }
@@ -140,8 +147,8 @@ void Player::InitialiseActions()
    // bool isGhost = (m_id == ID::Player1);
     //P1 Ghost 
     //if (isGhost){
-    m_action_binding[Action::kMoveRight].category = static_cast<unsigned int>(ReceiverCategories::kPlayer2);
-    m_action_binding[Action::kMoveRight].category = static_cast<unsigned int>(ReceiverCategories::kPlayer1);
+   // m_action_binding[Action::kMoveRightP2].category = static_cast<unsigned int>(ReceiverCategories::kPlayer2);
+   // m_action_binding[Action::kMoveRight].category = static_cast<unsigned int>(ReceiverCategories::kPlayer1);
 
     m_action_binding[Action::kMoveLeft].action = DerivedAction<Character>(CharacterMover(-kPlayerSpeed, 0.f));
     m_action_binding[Action::kMoveRight].action = DerivedAction<Character>(CharacterMover(kPlayerSpeed, 0.f));

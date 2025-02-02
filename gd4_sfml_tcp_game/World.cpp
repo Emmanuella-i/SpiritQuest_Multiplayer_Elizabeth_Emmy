@@ -5,7 +5,7 @@
 #include "Projectile.hpp"
 #include "ParticleNode.hpp"
 #include "SoundNode.hpp"
-
+#include <iostream>
 World::World(sf::RenderTarget& output_target, FontHolder& font, SoundPlayer& sounds)
 	:m_target(output_target)
 	,m_camera(output_target.getDefaultView())
@@ -55,6 +55,8 @@ void World::Update(sf::Time dt)
 
 	m_scenegraph.Update(dt, m_command_queue);
 	AdaptPlayerPosition();
+	std::cout << "Player 1 Velocity: " << m_player_aircraft->GetVelocity().x << ", " << m_player_aircraft->GetVelocity().y << std::endl;
+	std::cout << "Player 2 Velocity: " << m_player2_aircraft->GetVelocity().x << ", " << m_player2_aircraft->GetVelocity().y << std::endl;
 }
 
 void World::Draw()
