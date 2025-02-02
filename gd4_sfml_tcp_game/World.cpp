@@ -16,7 +16,7 @@ World::World(sf::RenderTarget& output_target, FontHolder& font, SoundPlayer& sou
 	,m_scene_layers()
 	,m_world_bounds(0.f,0.f, m_camera.getSize().x, 3000.f)
 	,m_spawn_position(m_camera.getSize().x/2.f, m_world_bounds.height - m_camera.getSize().y/2.f - 100.f)
-	,m_spawn_position2(m_camera.getSize().x / 2.f, m_world_bounds.height - m_camera.getSize().y / 2.f - 200.f )
+	,m_spawn_position2(m_camera.getSize().x / 2.f+2.f, m_world_bounds.height - m_camera.getSize().y / 2.f - 250.f )
 	,m_scrollspeed(-50.f)
 	,m_player_aircraft(nullptr)
 	,m_player2_aircraft(nullptr)
@@ -426,7 +426,7 @@ void World::HandleCollisions()
 			pickup.Destroy();
 			player.PlayLocalSound(m_command_queue, SoundEffect::kCollectPickup);
 		}
-		else if (MatchesCategories(pair, ReceiverCategories::kPlayer1, ReceiverCategories::kEnemyProjectile) || MatchesCategories(pair, ReceiverCategories::kEnemyAircraft, ReceiverCategories::kAlliedProjectile))
+		else if (MatchesCategories(pair, ReceiverCategories::kPlayer1, ReceiverCategories::kEnemyProjectile) || MatchesCategories(pair, ReceiverCategories::kPlayer2, ReceiverCategories::kAlliedProjectile))
 		{
 			auto& aircraft = static_cast<Character&>(*pair.first);
 			auto& projectile = static_cast<Projectile&>(*pair.second);
