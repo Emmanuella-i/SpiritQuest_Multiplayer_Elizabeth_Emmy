@@ -16,7 +16,7 @@ World::World(sf::RenderTarget& output_target, FontHolder& font, SoundPlayer& sou
 	,m_scene_layers()
 	,m_world_bounds(0.f,0.f, m_camera.getSize().x, 3000.f)
 	,m_spawn_position(m_camera.getSize().x/2.f, m_world_bounds.height - m_camera.getSize().y/2.f - 100.f)
-	,m_spawn_position2(m_camera.getSize().x / 2.f, m_world_bounds.height - m_camera.getSize().y / 2.f  )
+	,m_spawn_position2(m_camera.getSize().x / 2.f, m_world_bounds.height - m_camera.getSize().y / 2.f - 200.f )
 	,m_scrollspeed(-50.f)
 	,m_player_aircraft(nullptr)
 	,m_player2_aircraft(nullptr)
@@ -51,7 +51,7 @@ void World::Update(sf::Time dt)
 
 	m_scenegraph.RemoveWrecks();
 
-	SpawnEnemies();
+	//SpawnEnemies();
 
 	m_scenegraph.Update(dt, m_command_queue);
 	AdaptPlayerPosition();
@@ -312,7 +312,6 @@ sf::FloatRect World::GetBattleFieldBounds() const
 void World::DestroyEntitiesOutsideView()
 {
 	Command command;
-	command.category = static_cast<int>(ReceiverCategories::kEnemyAircraft) | static_cast<int>(ReceiverCategories::kProjectile) | static_cast<int>(ReceiverCategories::kPlayer1);
 	command.category = static_cast<int>(ReceiverCategories::kEnemyAircraft) | static_cast<int>(ReceiverCategories::kProjectile) | static_cast<int>(ReceiverCategories::kPlayer2);//ET, same constrainst for player 2
 	command.action = DerivedAction<Entity>([this](Entity& e, sf::Time dt)
 		{
@@ -406,8 +405,8 @@ void World::HandleCollisions()
 			auto& player = static_cast<Character&>(*pair.first);
 			auto& enemy = static_cast<Character&>(*pair.second);
 			//Collision response
-			player.Damage(enemy.GetHitPoints());
-			enemy.Destroy();
+			player.Damage(10);
+			//enemy.Destroy();
 		}
 
 		//ET: destroy player if player 2 collides with it 
