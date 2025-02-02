@@ -84,11 +84,13 @@ CommandQueue& World::GetCommandQueue()
 bool World::HasAlivePlayer() const
 {
 	return !m_player_aircraft->IsMarkedForRemoval();
+	return !m_player2_aircraft->IsMarkedForRemoval();
 }
 
 bool World::HasPlayerReachedEnd() const
 {
 	return !m_world_bounds.contains(m_player_aircraft->getPosition());
+	return !m_world_bounds.contains(m_player2_aircraft->getPosition());
 }
 
 void World::LoadTextures()

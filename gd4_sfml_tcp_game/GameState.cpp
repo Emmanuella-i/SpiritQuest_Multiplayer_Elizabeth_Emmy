@@ -24,7 +24,13 @@ bool GameState::Update(sf::Time dt)
 		m_player.SetMissionStatus(MissionStatus::kMissionSuccessReaperGD);
 		RequestStackPush(StateID::kGameOver);
 	}
-	if (!m_world.HasAlivePlayer())
+	else if (!m_world.HasAlivePlayer())
+	{
+		m_player.SetMissionStatus(MissionStatus::kMissionFailure);
+		m_player2.SetMissionStatus(MissionStatus::kMissionFailure);
+		RequestStackPush(StateID::kGameOver);
+	}
+	else if (!m_world.HasAlivePlayer())
 	{
 		m_player2.SetMissionStatus(MissionStatus::kMissionSuccessGhostRD);
 		RequestStackPush(StateID::kGameOver);
@@ -41,6 +47,8 @@ bool GameState::Update(sf::Time dt)
 		m_player2.SetMissionStatus(MissionStatus::kMissionFailureReaper);
 		RequestStackPush(StateID::kGameOver);
 	}
+	
+	
 	CommandQueue& commands = m_world.GetCommandQueue();
 	m_player.HandleRealTimeInput(commands);
 	return true;
