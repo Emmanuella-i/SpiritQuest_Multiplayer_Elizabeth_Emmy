@@ -59,7 +59,7 @@ void World::Update(sf::Time dt)
 
 void World::Draw()
 {
-	/*if (PostEffect::IsSupported())
+	if (PostEffect::IsSupported())
 	{
 		m_scene_texture.clear();
 		m_scene_texture.setView(m_camera);
@@ -68,10 +68,10 @@ void World::Draw()
 		m_bloom_effect.Apply(m_scene_texture, m_target);
 	}
 	else
-	{*/
+	{
 		m_target.setView(m_camera);
 		m_target.draw(m_scenegraph);
-	//}
+	}
 }
 
 CommandQueue& World::GetCommandQueue()
