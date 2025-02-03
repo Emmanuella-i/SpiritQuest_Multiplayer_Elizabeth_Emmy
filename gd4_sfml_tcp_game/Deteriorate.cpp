@@ -1,3 +1,4 @@
+//E.I D00244320, E.T D00245315
 #include "Deteriorate.hpp"
 #include "DataTables.hpp"
 #include "ResourceHolder.hpp"
@@ -6,6 +7,8 @@
 #include "ParticleType.hpp"
 #include <vector>
 
+
+//E.I Attempted deteriorate mechanic
 
 /*namespace
 {

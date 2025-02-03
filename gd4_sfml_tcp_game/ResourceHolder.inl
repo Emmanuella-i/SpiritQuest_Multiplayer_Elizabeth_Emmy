@@ -1,3 +1,4 @@
+//E.I D00244320, E.T D00245315
 #include "ResourceHolder.hpp"
 
 template <typename Identifier, typename Resource>

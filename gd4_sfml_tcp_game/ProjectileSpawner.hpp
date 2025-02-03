@@ -1,4 +1,4 @@
-//EI
+// E.I D00244320
 #pragma once
 #include "ResourceIdentifiers.hpp"
 #include "TextNode.hpp"
@@ -6,6 +6,8 @@
 #include "ProjectileType.hpp"
 #include <SFML/Graphics/Sprite.hpp>
 #include "Animation.hpp"
+
+//E.I Attempted projectile spawner class
 
 class ProjectileSpawner 
 {

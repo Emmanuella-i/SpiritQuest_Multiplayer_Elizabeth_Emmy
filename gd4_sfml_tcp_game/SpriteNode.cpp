@@ -1,3 +1,4 @@
+//E.I D00244320, E.T D00245315
 #include "SpriteNode.hpp"
 
 SpriteNode::SpriteNode(const sf::Texture& texture):m_sprite(texture)

@@ -3,7 +3,7 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include "Player.hpp"
 #include "Utility.hpp"
-/*ET*/
+/*E.T D00245315*/
 
 GameOverState::GameOverState(StateStack& stack, Context context)
     : State(stack, context)

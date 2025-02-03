@@ -1,8 +1,10 @@
+//E.I D00244320, E.T d00245315
 #include "BloomEffect.hpp"
 #include "ShaderTypes.hpp"
 
 BloomEffect::BloomEffect()
 {
+	//E.I, Edited Brightness.frag on notes. changed Factor from 4 to 2.
 	m_shaders.Load(ShaderTypes::kBrightnessPass, "Media/Shaders/Fullpass.vert", "Media/Shaders/Brightness.frag");
 	m_shaders.Load(ShaderTypes::kDownSamplePass, "Media/Shaders/Fullpass.vert", "Media/Shaders/DownSample.frag");
 	m_shaders.Load(ShaderTypes::kGaussianBlurPass, "Media/Shaders/Fullpass.vert", "Media/Shaders/GuassianBlur.frag");

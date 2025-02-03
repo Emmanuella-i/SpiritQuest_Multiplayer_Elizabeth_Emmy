@@ -1,3 +1,4 @@
+//E.I D00244320, E.T D00245315
 #include "ProjectileSpawner.hpp"
 #include "Projectile.hpp"
 #include "ProjectileType.hpp"
@@ -12,6 +13,8 @@
 #include "SceneNode.hpp"
 #include "Utility.hpp"
 
+
+//E.I Attempted projectile spawner
 
 namespace
 {

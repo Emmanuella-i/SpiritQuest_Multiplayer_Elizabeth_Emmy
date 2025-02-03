@@ -1,8 +1,9 @@
-//ET
+//E.I D00244320, E.T D00245315
 #include "SettingsState.hpp"
 #include "ResourceHolder.hpp"
 #include "Utility.hpp"
 
+//E.T
 SettingsState::SettingsState(StateStack& stack, Context context)
 	: State(stack, context)
 	, m_gui_container()
@@ -23,7 +24,7 @@ SettingsState::SettingsState(StateStack& stack, Context context)
 	AddButtonLabel(Action::kBulletFire, p1X, 350.f, "P1 Fire", context);
 	AddButtonLabel(Action::kMissileFire, p1X, 400.f, "P1 Missile Fire", context);
 
-	//Build key binding buttons and labels for player 2  on the Right
+	//E.T Build key binding buttons and labels for player 2  on the Right
 	AddButtonLabel(Action::kMoveUpP2 , p2X, 150.f, " P2 Move Up", context);
 	AddButtonLabel(Action::kMoveDownP2 , p2X, 200.f, "P2 Move Down", context);
 	AddButtonLabel(Action::kMoveRightP2 , p2X, 250.f, "P2 Move Right", context);

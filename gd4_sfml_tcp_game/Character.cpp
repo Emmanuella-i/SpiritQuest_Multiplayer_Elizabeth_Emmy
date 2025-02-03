@@ -1,4 +1,4 @@
-/* E,I*/
+//E.I D00244320, E.T d00245315
 
 #include "Character.hpp"
 #include "TextureID.hpp"
@@ -10,6 +10,7 @@
 #include "Pickup.hpp"
 #include "SoundNode.hpp"
 
+//E.I, Changed ALL "aircrafttype" & "aircraft" references to "character" & "charactertype"
 namespace
 {
 	const std::vector<CharacterData> Table = InitializeCharacterData();
@@ -17,6 +18,7 @@ namespace
 
 TextureID ToTextureID(CharacterType type)
 {
+	//E.I, Changed kEagle to kGhost, Changed kRaptor to kReaper, Deleted other types
 	switch (type)
 	{
 	case CharacterType::kGhost:
@@ -75,6 +77,7 @@ Character::Character(CharacterType type, const TextureHolder& textures, const Fo
 			CreatePickup(node, textures);
 		};
 
+	//E.I, Changed health display to spirit energy display
 	std::string* spirit_energy = new std::string("");
 	std::unique_ptr<TextNode> spirit_energy_display(new TextNode(fonts, *spirit_energy));
 	m_spirit_energy_display = spirit_energy_display.get();
@@ -91,6 +94,7 @@ Character::Character(CharacterType type, const TextureHolder& textures, const Fo
 	UpdateTexts();
 }
 
+//E.T
 unsigned int Character::GetCategory() const
 {
 	if (IsAllied())
@@ -124,6 +128,7 @@ void Character::CollectMissile(unsigned int count)
 	m_missile_ammo += count;
 }
 
+//E.I
 void Character::UpdateTexts()
 {
 	m_spirit_energy_display->SetString(std::to_string(GetHitPoints()) + "SE");
@@ -329,7 +334,7 @@ void Character::CheckPickupDrop(CommandQueue& commands)
 	m_spawned_pickup = true;
 }
 
-//E.I
+//E.I, Added loop to try to account for > 2 frames of animation.
 void Character::UpdateRollAnimation()
 {
 	if (Table[static_cast<int>(m_type)].m_has_roll_animation)

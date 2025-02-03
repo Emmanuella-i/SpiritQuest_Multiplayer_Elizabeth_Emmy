@@ -1,3 +1,4 @@
+//E.I D00244320, E.T D00245315
 #include "Player.hpp"
 #include "ReceiverCategories.hpp"
 #include "Character.hpp"
@@ -16,6 +17,7 @@ struct CharacterMover
     sf::Vector2f velocity;
 };
 
+//E.T
 Player::Player() : m_current_mission_status(MissionStatus::kMissionRunning)
 {
   //  const bool isGhost = (id == ID::Player1);
@@ -93,7 +95,7 @@ void Player::HandleRealTimeInput(CommandQueue& command_queue)
         if (sf::Keyboard::isKeyPressed(pair.first) && IsRealTimeAction(pair.second))
         {
             command_queue.Push(m_action_binding[pair.second]);
-            // debug
+            // E.T debug
             //std::cout << "Key pressed: " << pair.first << " Action: " << static_cast<int>(pair.second) << std::endl;
             //std::cout << "Command pushed: " << static_cast<int>(pair.second) << std::endl;
 

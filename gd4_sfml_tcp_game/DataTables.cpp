@@ -1,3 +1,5 @@
+
+//E.I D00244320, E.T D00245315
 #include "DataTables.hpp"
 #include "CharacterType.hpp"
 #include "ProjectileType.hpp"
@@ -7,6 +9,7 @@
 #include "Deteriorate.hpp"
 #include "ProjectileSpawner.hpp"
 
+//E.I Changed intRect variables
 std::vector<CharacterData> InitializeCharacterData()
 {
     std::vector<CharacterData> data(static_cast<int>(CharacterType::kCharacterCount));
@@ -34,6 +37,8 @@ std::vector<CharacterData> InitializeCharacterData()
     return data;
 }
 
+
+//E.I Attempted projectile spawner
 std::vector<ProjectileSpawnerData> InitializeProjectileSpawnerData()
 {
     std::vector<ProjectileSpawnerData> spawnerdata;
@@ -43,6 +48,7 @@ std::vector<ProjectileSpawnerData> InitializeProjectileSpawnerData()
     return spawnerdata;
 }
 
+//E.I Changed texture IDs 
 std::vector<ProjectileData> InitializeProjectileData()
 {
     std::vector<ProjectileData> data(static_cast<int>(ProjectileType::kProjectileCount));
@@ -103,6 +109,9 @@ std::vector<ParticleData> InitializeParticleData()
 
     return data;
 }
+
+
+//E.I Attempted Deteriorate Mechanic
 
 /*std::vector<DeteriorateData> InitializeDeteriorateData()
 {

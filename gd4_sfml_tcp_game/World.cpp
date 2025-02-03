@@ -1,4 +1,4 @@
-//EI, ET
+//E.I D00244320, E.T D00245315
 
 #include "World.hpp"
 #include "Pickup.hpp"
@@ -55,6 +55,8 @@ void World::Update(sf::Time dt)
 
 	m_scenegraph.Update(dt, m_command_queue);
 	AdaptPlayerPosition();
+
+	//ET:
 	std::cout << "Player 1 Velocity: " << m_player_aircraft->GetVelocity().x << ", " << m_player_aircraft->GetVelocity().y << std::endl;
 	std::cout << "Player 2 Velocity: " << m_player2_aircraft->GetVelocity().x << ", " << m_player2_aircraft->GetVelocity().y << std::endl;
 }
@@ -81,18 +83,21 @@ CommandQueue& World::GetCommandQueue()
 	return m_command_queue;
 }
 
+//E.T
 bool World::HasAlivePlayer() const
 {
 	return !m_player_aircraft->IsMarkedForRemoval();
 	return !m_player2_aircraft->IsMarkedForRemoval();
 }
 
+//E.T:
 bool World::HasPlayerReachedEnd() const
 {
 	return !m_world_bounds.contains(m_player_aircraft->getPosition());
 	return !m_world_bounds.contains(m_player2_aircraft->getPosition());
 }
 
+//E.I:
 void World::LoadTextures()
 {
 	m_textures.Load(TextureID::kGhost, "Media/Textures/Ghost/ghost-Sheet.png");
@@ -121,6 +126,7 @@ void World::LoadTextures()
 
 }
 
+//E.I:
 void World::BuildScene()
 {
 	//Initialize the different layers
@@ -217,6 +223,7 @@ void World::BuildScene()
 	m_player_aircraft->AttachChild(std::move(right_escort));*/
 }
 
+//E.I: Removed code typing player to screen.  E.T: Added multiplayer function (player 1/2)
 void World::AdaptPlayerPosition()
 {
 	//keep the player on the screen
@@ -311,6 +318,7 @@ sf::FloatRect World::GetBattleFieldBounds() const
 
 }
 
+//E.I: Changed kenemyaircraft to Player1.
 void World::DestroyEntitiesOutsideView()
 {
 	Command command;
@@ -395,7 +403,7 @@ bool MatchesCategories(SceneNode::Pair& colliders, ReceiverCategories type1, Rec
 	}
 }
 
-
+//E.I: Stopped code that instantly kills enemy (reaper)
 void World::HandleCollisions()
 {
 	std::set<SceneNode::Pair> collision_pairs;
@@ -439,6 +447,7 @@ void World::HandleCollisions()
 	}
 }
 
+//E.I: Attempted deteriorate mechanic code
 void World::HandleDeteriorate()
 {
 
