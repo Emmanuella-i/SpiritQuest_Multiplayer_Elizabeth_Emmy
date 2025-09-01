@@ -1,6 +1,8 @@
+//E.I D00244320, E.T d00245315
 #pragma once
 #include "State.hpp"
 #include "World.hpp"
+#include "Player.hpp"
 
 class GameState : public State
 {
@@ -12,6 +14,7 @@ public:
 
 private:
 	World m_world;
-	Player& m_player;
+	Player m_player;
+	//Player m_player2;
 };
 

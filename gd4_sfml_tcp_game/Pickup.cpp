@@ -1,3 +1,4 @@
+//E.I D00244320, E.T D00245315
 #include "Pickup.hpp"
 #include "DataTables.hpp"
 #include "ResourceHolder.hpp"
@@ -27,7 +28,7 @@ sf::FloatRect Pickup::GetBoundingRect() const
     return GetWorldTransform().transformRect(m_sprite.getGlobalBounds());
 }
 
-void Pickup::Apply(Aircraft& player) const
+void Pickup::Apply(Character& player) const
 {
     Table[static_cast<int>(m_type)].m_action(player);
 }

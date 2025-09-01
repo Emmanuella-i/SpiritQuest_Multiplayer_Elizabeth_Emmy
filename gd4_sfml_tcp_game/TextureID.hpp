@@ -1,10 +1,11 @@
+//E.I D00244320, E.T d00245315
 #pragma once
 enum class TextureID
 {
 	kLandscape,
-	kEagle,
-	kRaptor,
-	kAvenger,
+	kGhost,
+	kReaper,
+	kSpawner,
 	kMissile,
 	kTitleScreen,
 	kButtonNormal,
@@ -16,10 +17,29 @@ enum class TextureID
 	kFireSpread,
 	kFireRate,
 	kFinishLine,
+	kBottom,
+
+	kPlat1A, 
+	kPlat1B,
+
+	kPlat2A,
+	kPlat2B,
+	kPlat2C,
+	kPlat2D,
+	kPlat2E,
+	kPlat2F,
+	kPlat2G,
+
+	kPlat3,
+
+
+	kCloud,
 	kEntities,
+	kCeleste,
 	kJungle,
 	kButtons,
 	kExplosion,
-	kParticle
-
+	kParticle,
+	kSettingsBackground,
+	kSettingsHeader
 };

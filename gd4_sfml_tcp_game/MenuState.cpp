@@ -1,3 +1,5 @@
+
+//E.I D00244320, E.T D00245315
 #include "MenuState.hpp"
 #include "ResourceHolder.hpp"
 #include "Utility.hpp"
@@ -11,7 +13,7 @@ MenuState::MenuState(StateStack& stack, Context context)
     m_background_sprite.setTexture(texture);
 
     auto play_button = std::make_shared<gui::Button>(context);
-    play_button->setPosition(100, 250);
+    play_button->setPosition(410, 400);
     play_button->SetText("Play");
     play_button->SetCallback([this]()
     {
@@ -20,7 +22,7 @@ MenuState::MenuState(StateStack& stack, Context context)
     });
 
     auto settings_button = std::make_shared<gui::Button>(context);
-    settings_button->setPosition(100, 300);
+    settings_button->setPosition(410, 450);
     settings_button->SetText("Settings");
     settings_button->SetCallback([this]()
     {
@@ -28,7 +30,7 @@ MenuState::MenuState(StateStack& stack, Context context)
     });
 
     auto exit_button = std::make_shared<gui::Button>(context);
-    exit_button->setPosition(100, 350);
+    exit_button->setPosition(410, 500);
     exit_button->SetText("Exit");
     exit_button->SetCallback([this]()
     {

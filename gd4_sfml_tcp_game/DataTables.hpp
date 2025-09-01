@@ -1,9 +1,11 @@
+//E.I D00244320, E.T d00245315
 #pragma once
 #include <vector>
 #include <SFML/System/Time.hpp>
 #include "ResourceIdentifiers.hpp"
 #include <functional>
-#include "Aircraft.hpp"
+#include "Character.hpp"
+#include "ProjectileSpawner.hpp"
 
 
 struct Direction
@@ -14,7 +16,7 @@ struct Direction
 	float m_distance;
 };
 
-struct AircraftData
+struct CharacterData
 {
 	int m_hitpoints;
 	float m_speed;
@@ -23,6 +25,13 @@ struct AircraftData
 	sf::Time m_fire_interval;
 	std::vector<Direction> m_directions;
 	bool m_has_roll_animation;
+};
+
+struct ProjectileSpawnerData
+{
+	sf::Time m_fire_interval;
+	std::vector<Direction> m_directions;
+	TextureID m_texture;
 };
 
 struct ProjectileData
@@ -35,7 +44,7 @@ struct ProjectileData
 
 struct PickupData
 {
-	std::function<void(Aircraft&)> m_action;
+	std::function<void(Character&)> m_action;
 	TextureID m_texture;
 	sf::IntRect m_texture_rect;
 };
@@ -46,8 +55,15 @@ struct ParticleData
 	sf::Time m_lifetime;
 };
 
-std::vector<AircraftData> InitializeAircraftData();
+struct DeteriorateData
+{
+	int m_damage;
+};
+
+std::vector<CharacterData> InitializeCharacterData();
 std::vector<ProjectileData> InitializeProjectileData();
 std::vector<PickupData> InitializePickupData();
 std::vector<ParticleData> InitializeParticleData();
+std::vector<DeteriorateData> InitializeDeteriorateData();
+std::vector<ProjectileSpawnerData> InitializeProjectileSpawnerData();
 

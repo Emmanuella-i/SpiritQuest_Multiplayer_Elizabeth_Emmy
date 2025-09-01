@@ -30,7 +30,7 @@
     <ClCompile Include="Entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Aircraft.cpp">
+    <ClCompile Include="Character.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SceneNode.cpp">
@@ -126,6 +126,27 @@
     <ClCompile Include="SoundNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Deteriorate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ProjectileSpawner.hpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ProjectileSpawner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameServer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NetworkNode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MultiplayerGameState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyBinding.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.hpp">
@@ -152,10 +173,10 @@
     <ClInclude Include="Entity.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AircraftType.hpp">
+    <ClInclude Include="CharacterType.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Aircraft.hpp">
+    <ClInclude Include="Character.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SceneNode.hpp">
@@ -297,6 +318,27 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SoundNode.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Deteriorate.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameServer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NetworkProtocol.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NetworkNode.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MultiplayerGameState.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyBinding.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BulletDirection.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

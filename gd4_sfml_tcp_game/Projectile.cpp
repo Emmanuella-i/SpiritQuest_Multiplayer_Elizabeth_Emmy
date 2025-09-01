@@ -1,3 +1,4 @@
+//E.I D00244320, E.T D00245315
 #include "Projectile.hpp"
 #include "DataTables.hpp"
 #include "ResourceHolder.hpp"
@@ -41,7 +42,7 @@ bool Projectile::IsGuided() const
 
 unsigned int Projectile::GetCategory() const
 {
-    if (m_type == ProjectileType::kEnemyBullet)
+    if (m_type == ProjectileType::kReaperBullet)
     {
         return static_cast<int>(ReceiverCategories::kEnemyProjectile);
     }

@@ -1,3 +1,15 @@
+//E.I D00244320, E.T d00245315
+#pragma once
+#include "State.hpp"
+#include "Player.hpp"
+#include "Container.hpp"
+#include "Button.hpp"
+#include "Label.hpp"
+#include <SFML/Graphics/Sprite.hpp>
+
+#include <array>
+
+
 #pragma once
 #include "State.hpp"
 #include "Player.hpp"
@@ -19,12 +31,11 @@ public:
 
 private:
 	void UpdateLabels();
-	void AddButtonLabel(Action action, float y, const std::string& text, Context context);
+	void AddButtonLabel(std::size_t index, std::size_t x, std::size_t y, const std::string& text, Context context);
 
 private:
 	sf::Sprite m_background_sprite;
 	gui::Container m_gui_container;
-	std::array<gui::Button::Ptr, static_cast<int>(Action::kActionCount)> m_binding_buttons;
-	std::array<gui::Label::Ptr, static_cast<int>(Action::kActionCount)> m_binding_labels;
+	std::array<gui::Button::Ptr, 2 * (static_cast<int>(Action::kActionCount))> m_binding_buttons;
+	std::array<gui::Label::Ptr, 2 * (static_cast<int>(Action::kActionCount))> m_binding_labels;
 };
-
